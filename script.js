@@ -9,6 +9,64 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
+// Notification stagger animation
+(() => {
+  const screen = document.getElementById('notif-screen');
+  if (!screen) return;
+  const cards = screen.querySelectorAll('.notif-card');
+  let triggered = false;
+  const notifObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !triggered) {
+        triggered = true;
+        cards.forEach((card, i) => {
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, i * 180);
+        });
+        notifObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  notifObserver.observe(screen);
+})();
+
+// Lead magnet modal
+(() => {
+  const modal = document.getElementById('lead-modal');
+  if (!modal) return;
+  const backdrop = modal.querySelector('.lead-modal-backdrop');
+  const closeBtn = document.getElementById('lead-modal-close');
+  const openBtn = document.getElementById('open-leadmodal-cta');
+
+  const open = () => {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  // Open triggers: dedicated button + all [data-open-lead-modal] links
+  if (openBtn) openBtn.addEventListener('click', open);
+  document.querySelectorAll('[data-open-lead-modal]').forEach(el => {
+    el.addEventListener('click', (e) => { e.preventDefault(); open(); });
+  });
+
+  // Close triggers
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  if (backdrop) backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
+  });
+})();
+
 // Mobile nav toggle
 (() => {
   const btn = document.getElementById('mobile-menu-toggle');
@@ -50,32 +108,36 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
       const concern = chip.dataset.selfcheck || '';
       chips.forEach((c) => c.classList.remove('bg-accent-500/20', 'border-accent-400', 'text-white'));
       chip.classList.add('bg-accent-500/20', 'border-accent-400', 'text-white');
-      if (result) {
-        result.classList.remove('hidden');
-        result.classList.add('flex');
-      }
       try { sessionStorage.setItem('manspick-concern', concern); } catch (e) {}
-      setTimeout(() => {
-        const target = document.getElementById('lead-magnet');
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 600);
     });
   });
 })();
 
-// WHY section — radar chart (expert analysis)
+// WHY section — radar chart (expert analysis) with dynamic concern data
 (() => {
   const canvas = document.getElementById('analysisChart');
   if (!canvas || typeof Chart === 'undefined') return;
   const ctx = canvas.getContext('2d');
-  new Chart(ctx, {
+
+  // 고민별 "현재 상태" 데이터 — 각 고민에 따라 취약 영역이 다르게 표현됨
+  //                        [앵글·구도, 포즈·자세, 표정·시선, 의상·스타일링, 조명·색감, 보정 완성도]
+  const concernData = {
+    default:                [62, 58, 68, 60, 52, 48],
+    '프로필 사진이 어색해요': [55, 35, 30, 58, 50, 45],  // 포즈·표정이 특히 낮음
+    '소개팅 앞두고 급해요':   [60, 55, 62, 32, 48, 28],  // 의상·보정 준비 부족
+    '거울과 사진이 달라요':   [28, 52, 60, 55, 30, 42],  // 앵글·조명이 특히 낮음
+  };
+
+  const afterData = [94, 90, 95, 92, 97, 90]; // 맨즈픽 디렉팅 후 (항상 고정)
+
+  const chart = new Chart(ctx, {
     type: 'radar',
     data: {
       labels: ['앵글·구도', '포즈·자세', '표정·시선', '의상·스타일링', '조명·색감', '보정 완성도'],
       datasets: [
         {
           label: '현재 상태',
-          data: [62, 58, 68, 60, 52, 48],
+          data: [...concernData.default],
           backgroundColor: 'rgba(255,255,255,0.06)',
           borderColor: 'rgba(180,180,180,0.6)',
           borderWidth: 2,
@@ -85,7 +147,7 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
         },
         {
           label: '맨즈픽 디렉팅 후',
-          data: [94, 90, 95, 92, 97, 90],
+          data: afterData,
           backgroundColor: 'rgba(45,118,246,0.22)',
           borderColor: '#2d76f6',
           borderWidth: 3,
@@ -99,6 +161,7 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
       responsive: true,
       maintainAspectRatio: false,
       elements: { line: { tension: 0.3 } },
+      animation: { duration: 600, easing: 'easeOutQuart' },
       scales: {
         r: {
           suggestedMin: 0,
@@ -133,6 +196,35 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
         },
       },
     },
+  });
+
+  // 고민별 해결 카피
+  const solutionCopy = {
+    default: `"6년간 <span class="text-accent-400 font-bold">1,127명</span>을 촬영한 전문가가<br>당신의 <span class="text-accent-400 font-bold">앵글·톤·스타일</span>을 직접 설계합니다."`,
+    '프로필 사진이 어색해요': `"수백 명의 어색한 남성을 코칭한 경험으로<br><span class="text-accent-400 font-bold">표정·포즈·시선</span>을 현장에서 직접 디렉팅합니다."`,
+    '소개팅 앞두고 급해요': `"촬영 전 <span class="text-accent-400 font-bold">의상 피드백부터 코디 제안</span>까지,<br>급해도 괜찮습니다. 최적의 준비를 도와드립니다."`,
+    '거울과 사진이 달라요': `"실물보다 사진이 안 나오는 건 <span class="text-accent-400 font-bold">앵글과 조명</span> 문제입니다.<br>얼굴형·체형에 맞는 최적의 각도를 찾아드립니다."`,
+  };
+
+  const solutionEl = document.getElementById('selfcheck-solution');
+
+  // Self-check 칩 클릭 시 차트 + 솔루션 텍스트 동시 업데이트
+  document.querySelectorAll('.selfcheck-chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const key = chip.dataset.selfcheck || 'default';
+      const newData = concernData[key] || concernData.default;
+      chart.data.datasets[0].data = [...newData];
+      chart.update();
+
+      // 솔루션 텍스트 페이드 전환
+      if (solutionEl) {
+        solutionEl.style.opacity = '0';
+        setTimeout(() => {
+          solutionEl.innerHTML = solutionCopy[key] || solutionCopy.default;
+          solutionEl.style.opacity = '1';
+        }, 200);
+      }
+    });
   });
 })();
 
@@ -231,7 +323,14 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     const bar = document.getElementById('lead-bar');
     const recent = document.getElementById('lead-recent');
     if (!remEl || !bar) return;
-    let remaining = 23;
+    const storedRemaining = (() => {
+      try {
+        const data = JSON.parse(localStorage.getItem('manspick-lead'));
+        if (data && typeof data.r === 'number' && data.d === new Date().toDateString()) return data.r;
+      } catch (e) {}
+      return null;
+    })();
+    let remaining = storedRemaining !== null ? storedRemaining : 23;
     const total = 100;
     const names = ['김○○', '이○○', '박○○', '최○○', '정○○', '강○○', '조○○', '윤○○', '장○○', '임○○'];
     const mins = [1, 2, 3, 4, 5, 7, 8, 12, 15];
@@ -254,6 +353,7 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
         remaining -= 1;
         render();
         rotateRecent();
+        try { localStorage.setItem('manspick-lead', JSON.stringify({ r: remaining, d: new Date().toDateString() })); } catch (e) {}
       }
       setTimeout(tick, 28000 + Math.random() * 40000);
     };
@@ -543,3 +643,53 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
     }
   });
 });
+
+// Privacy checkbox → enable/disable submit button
+(() => {
+  const checkbox = document.getElementById('privacy-agree');
+  const btn = document.getElementById('lead-submit-btn');
+  if (!checkbox || !btn) return;
+  checkbox.addEventListener('change', () => {
+    btn.disabled = !checkbox.checked;
+  });
+})();
+
+// Lead form submission → show thank-you overlay
+(() => {
+  const form = document.querySelector('#lead-magnet form');
+  const thankyou = document.getElementById('lead-thankyou');
+  if (!form || !thankyou) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = form.querySelector('input[type="text"]');
+    const phone = document.getElementById('lead-phone');
+    if (!name?.value.trim() || !phone?.value.trim()) {
+      const empty = !name?.value.trim() ? name : phone;
+      empty?.focus();
+      empty?.classList.add('border-red-500');
+      setTimeout(() => empty?.classList.remove('border-red-500'), 2000);
+      return;
+    }
+    if (phone.value.replace(/\D/g, '').length < 10) {
+      phone.focus();
+      phone.classList.add('border-red-500');
+      setTimeout(() => phone.classList.remove('border-red-500'), 2000);
+      return;
+    }
+
+    // TODO: Replace with actual form submission endpoint
+    // e.g. fetch('https://formspree.io/f/xxxxx', { method: 'POST', body: new FormData(form) })
+
+    // GA4 event
+    if (typeof gtag === 'function') {
+      gtag('event', 'lead_submit', {
+        event_category: 'lead',
+        event_label: 'landing_page_form',
+      });
+    }
+
+    form.classList.add('hidden');
+    thankyou.classList.remove('hidden');
+  });
+})();
