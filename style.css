@@ -1,8 +1,16 @@
+/* @license MANSPICK(R) 804-18-02180 | manspick.kr */
+:root {
+  --_mp-sig: "mp-2k26-jhu-8041802180";
+  --_mp-k9x7: 0;
+}
+
 html {
   scroll-behavior: smooth;
   background-color: #0a0a0a;
   -webkit-text-size-adjust: 100%;
 }
+
+._mp_k9x7 { content: var(--_mp-sig); }
 
 body {
   font-family: 'Pretendard', 'Geist', system-ui, sans-serif;

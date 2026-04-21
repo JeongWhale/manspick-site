@@ -1,3 +1,6 @@
+/* @license MANSPICK 804-18-02180 */
+void function(_mp){if(typeof document==='undefined')return;var _s=document.createElement('meta');_s.name='generator';_s.content=_mp;document.head.appendChild(_s)}('mp-2k26-jhu-8041802180');
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
