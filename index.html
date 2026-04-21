@@ -2247,16 +2247,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <!-- Form -->
-        <form class="space-y-5" onsubmit="event.preventDefault()">
+        <iframe name="hidden-gform" style="display:none"></iframe>
+        <form class="space-y-5" id="lead-form"
+          action="https://docs.google.com/forms/d/1kTHxeVuP2Gr2Leu0-KMzHddmHi53uZjmidQwLsG1ZNw/formResponse"
+          method="POST" target="hidden-gform">
           <div class="grid sm:grid-cols-2 gap-4">
             <label class="block">
               <span class="block text-sm font-medium text-zinc-400 mb-2">성함</span>
-              <input type="text" id="lead-name" placeholder="홍길동"
+              <input type="text" id="lead-name" name="entry.779413363" placeholder="홍길동"
                 class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-zinc-600 focus:outline-none focus:border-accent-400 transition">
             </label>
             <label class="block">
               <span class="block text-sm font-medium text-zinc-400 mb-2">연락처</span>
-              <input type="tel" id="lead-phone" placeholder="010-0000-0000" inputmode="numeric" maxlength="13"
+              <input type="tel" id="lead-phone" name="entry.2136682804" placeholder="010-0000-0000" inputmode="numeric" maxlength="13"
                 class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-zinc-600 focus:outline-none focus:border-accent-400 transition">
             </label>
           </div>
@@ -2264,7 +2267,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="grid sm:grid-cols-3 gap-4">
             <label class="block">
               <span class="block text-sm font-medium text-zinc-400 mb-2">관심 패키지</span>
-              <select id="lead-package"
+              <select id="lead-package" name="entry.212751070"
                 class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-accent-400 transition appearance-none">
                 <option value="" class="text-zinc-600">선택해주세요</option>
                 <option value="ONE">ONE</option>
@@ -2275,7 +2278,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </label>
             <label class="block">
               <span class="block text-sm font-medium text-zinc-400 mb-2">촬영 목적</span>
-              <select id="lead-purpose"
+              <select id="lead-purpose" name="entry.852384418"
                 class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-accent-400 transition appearance-none">
                 <option value="" class="text-zinc-600">선택해주세요</option>
                 <option value="소개팅/결혼정보회사">소개팅/결혼정보회사</option>
@@ -2286,7 +2289,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </label>
             <label class="block">
               <span class="block text-sm font-medium text-zinc-400 mb-2">희망 시기</span>
-              <select id="lead-timing"
+              <select id="lead-timing" name="entry.1671617897"
                 class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-accent-400 transition appearance-none">
                 <option value="" class="text-zinc-600">선택해주세요</option>
                 <option value="이번주">이번주</option>

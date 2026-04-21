@@ -678,15 +678,15 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
 
 // Lead form submission → show thank-you overlay
 (() => {
-  const form = document.querySelector('#lead-modal form');
+  const form = document.getElementById('lead-form');
   const thankyou = document.getElementById('lead-thankyou');
   if (!form || !thankyou) return;
 
   form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = form.querySelector('input[type="text"]');
+    const name = document.getElementById('lead-name');
     const phone = document.getElementById('lead-phone');
     if (!name?.value.trim() || !phone?.value.trim()) {
+      e.preventDefault();
       const empty = !name?.value.trim() ? name : phone;
       empty?.focus();
       empty?.classList.add('border-red-500');
@@ -694,27 +694,14 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
       return;
     }
     if (phone.value.replace(/\D/g, '').length < 10) {
+      e.preventDefault();
       phone.focus();
       phone.classList.add('border-red-500');
       setTimeout(() => phone.classList.remove('border-red-500'), 2000);
       return;
     }
 
-    // Google Forms 연동
-    const gFormURL = 'https://docs.google.com/forms/d/1kTHxeVuP2Gr2Leu0-KMzHddmHi53uZjmidQwLsG1ZNw/formResponse';
-    const params = new URLSearchParams();
-    params.append('entry.779413363', name.value.trim());
-    params.append('entry.2136682804', phone.value.trim());
-    params.append('entry.212751070', document.getElementById('lead-package')?.value || '');
-    params.append('entry.852384418', document.getElementById('lead-purpose')?.value || '');
-    params.append('entry.1671617897', document.getElementById('lead-timing')?.value || '');
-
-    fetch(gFormURL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: params.toString(),
-    });
+    // 유효성 통과 → 폼은 hidden iframe으로 제출됨 (기본 동작)
 
     // GA4 event
     if (typeof gtag === 'function') {
@@ -724,8 +711,10 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
       });
     }
 
-    form.classList.add('hidden');
-    thankyou.classList.remove('hidden');
+    setTimeout(() => {
+      form.classList.add('hidden');
+      thankyou.classList.remove('hidden');
+    }, 500);
   });
 })();
 
