@@ -17,6 +17,33 @@
     'lecture':        50000,
   };
 
+  const packageIncludes = {
+    one: [
+      '1:1 사전 컨설팅', '의상 가이드 + 코디북', '1시간30분 촬영 · 1벌 · 스팟7',
+      '포즈·표정 디렉팅', '원본 300장+', '프리미엄 보정 5장', '무제한 수정', '무료 재촬영'
+    ],
+    hybrid: [
+      '1:1 사전 컨설팅', '의상 가이드 + 코디북', '그루밍 노션',
+      '2시간 촬영 · 2벌 · 스팟14', '포즈·표정 디렉팅', '원본 500장+',
+      '프리미엄 보정 7장', '무제한 수정', '무료 재촬영'
+    ],
+    allday: [
+      '1:1 사전 컨설팅', '외모 피드백 + 코디북', '그루밍 노션',
+      '헤어 스타일링 + 메이크업', '5시간+ 촬영 · 4벌 · N장소', '차량 이동',
+      '포즈·표정 디렉팅', '원본 700장+', '프리미엄 보정 12장', '무제한 수정', '무료 재촬영'
+    ],
+  };
+
+  const addonLabels = {
+    'hair': '헤어 & 메이크업',
+    'clothes-rental': '인플루언서 의류 대여',
+    'clothes-brand': '브랜드 1코디 제작',
+    'dslr': 'DSLR 스냅 촬영',
+    'ai': 'AI 프로필 2장',
+    'shopping': '오프라인 동행쇼핑',
+    'lecture': '스마트폰 사진 강의',
+  };
+
   // Quiz answer → addon mapping
   const quizAddonMap = {
     hair:     ['hair'],
@@ -281,11 +308,21 @@
     });
   });
 
-  // ── Price calculation ──
+  // ── Price calculation + summary ──
+  const summaryList = document.getElementById('summary-list');
   function updateTotal() {
     let total = packages[selectedPkg].price;
     selectedAddons.forEach(id => { total += addonPrices[id] || 0; });
     totalPriceEl.textContent = total.toLocaleString('ko-KR');
+    // Build summary chips
+    if (!summaryList) return;
+    const items = [...packageIncludes[selectedPkg]];
+    selectedAddons.forEach(id => {
+      if (addonLabels[id]) items.push(addonLabels[id]);
+    });
+    summaryList.innerHTML = items.map(t =>
+      `<span class="text-[10px] text-zinc-400 bg-white/5 rounded-full px-2 py-0.5">${t}</span>`
+    ).join('');
   }
 
   // ── Addon description toggle ──
