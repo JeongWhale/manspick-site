@@ -1694,49 +1694,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           가장 합리적인 서비스 구성
         </h2>
         <p class="text-base md:text-lg text-zinc-400 leading-relaxed mt-5 md:mt-6 break-keep">
-          모든 패키지에 의상 가이드, 12종 코디북, 사진 보정, 무제한 수정, <br>불만족 시 무료 재촬영이 포함됩니다.
+          모든 패키지에 의상 가이드, 12종 코디북, 사진 보정, 무제한 수정,<br class="hidden md:inline"> 불만족 시 무료 재촬영이 포함됩니다.
         </p>
       </div>
 
       <!-- Countdown banner — month-end discount -->
       <div class="reveal max-w-3xl mx-auto mb-14 md:mb-12">
         <div
-          class="glass-strong rounded-2xl px-5 py-5 md:px-7 md:py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-6 border border-accent-500/30">
-          <div class="flex items-center gap-3 text-left">
+          class="relative overflow-hidden rounded-2xl px-5 py-5 md:px-7 md:py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-6 border border-red-500/40 bg-red-950/30 backdrop-blur-xl">
+          <div class="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/5 pointer-events-none"></div>
+          <div class="relative flex items-center gap-3 text-left">
             <div
-              class="w-11 h-11 rounded-xl bg-accent-500/15 flex items-center justify-center text-accent-400 text-xl shrink-0">
-              <iconify-icon icon="solar:clock-circle-bold"></iconify-icon>
+              class="w-11 h-11 rounded-xl bg-red-500/20 flex items-center justify-center text-red-400 text-xl shrink-0 countdown-pulse">
+              <iconify-icon icon="solar:alarm-bold"></iconify-icon>
             </div>
             <div class="min-w-0">
-              <p class="text-[11px] text-accent-400 font-bold uppercase tracking-widest">이번 달 한정 할인</p>
+              <p class="text-[11px] text-red-400 font-bold uppercase tracking-widest flex items-center gap-1.5">
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                마감 임박
+              </p>
               <p class="text-white font-semibold text-sm md:text-base break-keep">이달 말까지만 최대 <span
-                  class="text-accent-400 font-bold">44%</span> 할인 적용</p>
+                  class="text-red-400 font-bold">44%</span> 할인 적용</p>
             </div>
           </div>
-          <div id="countdown" class="grid grid-cols-4 gap-2 md:gap-2.5 font-display">
+          <div id="countdown" class="relative grid grid-cols-4 gap-2 md:gap-2.5 font-display">
             <div
-              class="flex flex-col items-center justify-center bg-white/5 border border-white/10 rounded-xl py-2.5 md:py-3 md:px-3">
+              class="flex flex-col items-center justify-center bg-red-500/10 border border-red-500/20 rounded-xl py-2.5 md:py-3 md:px-3">
               <span id="cd-days"
                 class="text-white text-xl sm:text-2xl md:text-3xl font-bold tabular-nums leading-none">--</span>
-              <span class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest mt-1.5">Days</span>
+              <span class="text-[9px] md:text-[10px] text-red-400/60 uppercase tracking-widest mt-1.5">Days</span>
             </div>
             <div
-              class="flex flex-col items-center justify-center bg-white/5 border border-white/10 rounded-xl py-2.5 md:py-3 md:px-3">
+              class="flex flex-col items-center justify-center bg-red-500/10 border border-red-500/20 rounded-xl py-2.5 md:py-3 md:px-3">
               <span id="cd-hours"
                 class="text-white text-xl sm:text-2xl md:text-3xl font-bold tabular-nums leading-none">--</span>
-              <span class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest mt-1.5">Hours</span>
+              <span class="text-[9px] md:text-[10px] text-red-400/60 uppercase tracking-widest mt-1.5">Hours</span>
             </div>
             <div
-              class="flex flex-col items-center justify-center bg-white/5 border border-white/10 rounded-xl py-2.5 md:py-3 md:px-3">
+              class="flex flex-col items-center justify-center bg-red-500/10 border border-red-500/20 rounded-xl py-2.5 md:py-3 md:px-3">
               <span id="cd-mins"
                 class="text-white text-xl sm:text-2xl md:text-3xl font-bold tabular-nums leading-none">--</span>
-              <span class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest mt-1.5">Mins</span>
+              <span class="text-[9px] md:text-[10px] text-red-400/60 uppercase tracking-widest mt-1.5">Mins</span>
             </div>
             <div
-              class="flex flex-col items-center justify-center bg-accent-500/10 border border-accent-500/30 rounded-xl py-2.5 md:py-3 md:px-3">
+              class="flex flex-col items-center justify-center bg-red-500/20 border border-red-500/40 rounded-xl py-2.5 md:py-3 md:px-3">
               <span id="cd-secs"
-                class="text-accent-400 text-xl sm:text-2xl md:text-3xl font-bold tabular-nums leading-none">--</span>
-              <span class="text-[9px] md:text-[10px] text-accent-400/70 uppercase tracking-widest mt-1.5">Secs</span>
+                class="text-red-400 text-xl sm:text-2xl md:text-3xl font-bold tabular-nums leading-none">--</span>
+              <span class="text-[9px] md:text-[10px] text-red-400/70 uppercase tracking-widest mt-1.5">Secs</span>
             </div>
           </div>
         </div>
