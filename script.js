@@ -32,6 +32,26 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   notifObserver.observe(screen);
 })();
 
+// Team influencer image slideshow
+(() => {
+  const img = document.getElementById('team-influencer-img');
+  if (!img) return;
+  const srcs = [
+    'images/team-influencer-3.jpg',
+    'images/team-influencer-5.jpg',
+    'images/location-3.jpg',
+  ];
+  let idx = 0;
+  setInterval(() => {
+    idx = (idx + 1) % srcs.length;
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = srcs[idx];
+      img.style.opacity = '1';
+    }, 500);
+  }, 4000);
+})();
+
 // Lead magnet modal
 (() => {
   const modal = document.getElementById('lead-modal');
@@ -216,13 +236,15 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
       chart.data.datasets[0].data = [...newData];
       chart.update();
 
-      // 솔루션 텍스트 페이드 전환
+      // 솔루션 텍스트 즉시 교체 + fade-in
       if (solutionEl) {
+        solutionEl.style.transition = 'none';
         solutionEl.style.opacity = '0';
-        setTimeout(() => {
-          solutionEl.innerHTML = solutionCopy[key] || solutionCopy.default;
-          solutionEl.style.opacity = '1';
-        }, 200);
+        solutionEl.innerHTML = solutionCopy[key] || solutionCopy.default;
+        // force reflow then fade in
+        void solutionEl.offsetHeight;
+        solutionEl.style.transition = 'opacity 0.25s ease';
+        solutionEl.style.opacity = '1';
       }
     });
   });
@@ -678,8 +700,21 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
       return;
     }
 
-    // TODO: Replace with actual form submission endpoint
-    // e.g. fetch('https://formspree.io/f/xxxxx', { method: 'POST', body: new FormData(form) })
+    // Google Forms 연동
+    const gFormURL = 'https://docs.google.com/forms/d/1kTHxeVuP2Gr2Leu0-KMzHddmHi53uZjmidQwLsG1ZNw/formResponse';
+    const params = new URLSearchParams();
+    params.append('entry.779413363', name.value.trim());
+    params.append('entry.2136682804', phone.value.trim());
+    params.append('entry.212751070', document.getElementById('lead-package')?.value || '');
+    params.append('entry.852384418', document.getElementById('lead-purpose')?.value || '');
+    params.append('entry.1671617897', document.getElementById('lead-timing')?.value || '');
+
+    fetch(gFormURL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+    });
 
     // GA4 event
     if (typeof gtag === 'function') {
@@ -691,5 +726,22 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
 
     form.classList.add('hidden');
     thankyou.classList.remove('hidden');
+  });
+})();
+
+/* ── FAQ 더보기 토글 ── */
+(() => {
+  const btn = document.getElementById('faq-toggle');
+  const more = document.getElementById('faq-more');
+  const text = document.getElementById('faq-toggle-text');
+  const icon = document.getElementById('faq-toggle-icon');
+  if (!btn || !more) return;
+
+  let open = false;
+  btn.addEventListener('click', () => {
+    open = !open;
+    more.classList.toggle('hidden', !open);
+    text.textContent = open ? '접기' : '질문 더보기';
+    icon.style.transform = open ? 'rotate(180deg)' : '';
   });
 })();
