@@ -253,10 +253,11 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   });
 })();
 
-// Promo bar countdown
+// Promo bar countdown + seat sync
 (() => {
-  const el = document.getElementById('promo-timer');
-  if (!el) return;
+  const timer = document.getElementById('promo-timer');
+  const seats = document.getElementById('promo-seats');
+  if (!timer) return;
   const pad = (n) => String(n).padStart(2, '0');
   const tick = () => {
     const now = new Date();
@@ -266,10 +267,19 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     const hours = Math.floor(diff / 3600000); diff -= hours * 3600000;
     const mins = Math.floor(diff / 60000); diff -= mins * 60000;
     const secs = Math.floor(diff / 1000);
-    el.textContent = days + '일 ' + pad(hours) + ':' + pad(mins) + ':' + pad(secs);
+    timer.textContent = days + '일 ' + pad(hours) + ':' + pad(mins) + ':' + pad(secs);
+  };
+  const syncSeats = () => {
+    if (!seats) return;
+    const els = document.querySelectorAll('.slot-remaining');
+    let total = 0;
+    els.forEach((el) => { total += parseInt(el.textContent, 10) || 0; });
+    seats.textContent = total;
   };
   tick();
+  syncSeats();
   setInterval(tick, 1000);
+  setInterval(syncSeats, 3000);
 })();
 
 // Live slot counter — urgency scarcity feature
