@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="robots" content="noindex, nofollow">
+  <title>맞춤 패키지 추천 | 맨즈픽 MANSPICK</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: { 400: '#2D76F6', 500: '#2D76F6', 600: '#1e5fd6' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-['Pretendard','Geist',system-ui,sans-serif] bg-[#0a0a0a] text-zinc-100 antialiased break-keep">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-40 bg-zinc-950/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-full bg-accent-500 flex items-center justify-center">
+          <iconify-icon icon="solar:camera-bold" class="text-white text-sm"></iconify-icon>
+        </div>
+        <span class="font-display font-bold text-base tracking-tighter text-white">MANSPICK</span>
+      </a>
+      <a href="/" class="text-zinc-500 text-sm hover:text-white transition inline-flex items-center gap-1">
+        <iconify-icon icon="solar:arrow-left-linear" class="text-base"></iconify-icon>
+        메인으로
+      </a>
+    </div>
+  </nav>
+
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 pt-24 pb-32 min-h-dvh">
+
+    <!-- ============ QUIZ ============ -->
+    <div id="quiz-container">
+      <!-- Progress -->
+      <div class="mb-10">
+        <div class="flex items-center justify-between text-xs text-zinc-500 mb-2">
+          <span>맞춤 추천</span>
+          <span><span id="step-current">1</span> / 5</span>
+        </div>
+        <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+          <div id="progress-bar" class="h-full bg-accent-500 rounded-full transition-all duration-500 ease-out" style="width:20%"></div>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div id="quiz-steps" class="relative">
+
+        <!-- Step 1 -->
+        <div class="quiz-step" data-step="1">
+          <p class="text-accent-400 text-xs font-bold uppercase tracking-widest mb-3">Step 1</p>
+          <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">촬영 목적이 무엇인가요?</h2>
+          <p class="text-sm text-zinc-500 mb-8">가장 주된 목적 하나를 선택해 주세요.</p>
+          <div class="grid gap-3">
+            <button class="quiz-option" data-key="purpose" data-value="dating">
+              <iconify-icon icon="solar:heart-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">소개팅 · 결혼정보회사</p><p class="text-xs text-zinc-500 mt-0.5">매칭 앱, 소개팅용 프로필</p></div>
+            </button>
+            <button class="quiz-option" data-key="purpose" data-value="sns">
+              <iconify-icon icon="solar:camera-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">SNS · 인스타그램</p><p class="text-xs text-zinc-500 mt-0.5">인스타, 카카오 프로필 등</p></div>
+            </button>
+            <button class="quiz-option" data-key="purpose" data-value="business">
+              <iconify-icon icon="solar:briefcase-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">비즈니스 · 링크드인 · 이력서</p><p class="text-xs text-zinc-500 mt-0.5">취업, 명함, 비즈니스 프로필</p></div>
+            </button>
+            <button class="quiz-option" data-key="purpose" data-value="special">
+              <iconify-icon icon="solar:gift-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">특별한 날 기념</p><p class="text-xs text-zinc-500 mt-0.5">생일, 졸업, 기념일 등</p></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="quiz-step hidden" data-step="2">
+          <p class="text-accent-400 text-xs font-bold uppercase tracking-widest mb-3">Step 2</p>
+          <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">지금 가장 큰 고민은?</h2>
+          <p class="text-sm text-zinc-500 mb-8">해당하는 것 하나를 골라주세요.</p>
+          <div class="grid gap-3">
+            <button class="quiz-option" data-key="concern" data-value="styling">
+              <iconify-icon icon="solar:hanger-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">옷 스타일링을 잘 모르겠다</p><p class="text-xs text-zinc-500 mt-0.5">뭘 입어야 잘 나올지 감이 안 옴</p></div>
+            </button>
+            <button class="quiz-option" data-key="concern" data-value="pose">
+              <iconify-icon icon="solar:user-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">포즈 · 표정이 어색하다</p><p class="text-xs text-zinc-500 mt-0.5">사진 찍으면 항상 어색해서 걱정</p></div>
+            </button>
+            <button class="quiz-option" data-key="concern" data-value="grooming">
+              <iconify-icon icon="solar:magic-stick-3-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">헤어 · 메이크업도 관리받고 싶다</p><p class="text-xs text-zinc-500 mt-0.5">머리부터 발끝까지 전문가 손길</p></div>
+            </button>
+            <button class="quiz-option" data-key="concern" data-value="total">
+              <iconify-icon icon="solar:star-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">전체적으로 이미지를 확 바꾸고 싶다</p><p class="text-xs text-zinc-500 mt-0.5">완전히 다른 사람처럼 변신</p></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="quiz-step hidden" data-step="3">
+          <p class="text-accent-400 text-xs font-bold uppercase tracking-widest mb-3">Step 3</p>
+          <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">원하는 촬영 규모는?</h2>
+          <p class="text-sm text-zinc-500 mb-8">편하게 골라주세요.</p>
+          <div class="grid gap-3">
+            <button class="quiz-option" data-key="scale" data-value="light">
+              <iconify-icon icon="solar:camera-minimalistic-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">간단하게 1벌이면 충분</p><p class="text-xs text-zinc-500 mt-0.5">깔끔한 프로필 한 세트</p></div>
+            </button>
+            <button class="quiz-option" data-key="scale" data-value="medium">
+              <iconify-icon icon="solar:gallery-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">2벌 정도, 다양한 느낌으로</p><p class="text-xs text-zinc-500 mt-0.5">캐주얼 + 포멀 등 2가지 컨셉</p></div>
+            </button>
+            <button class="quiz-option" data-key="scale" data-value="full">
+              <iconify-icon icon="solar:crown-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">하루 종일 올인하고 싶다</p><p class="text-xs text-zinc-500 mt-0.5">4벌+, 여러 장소, 풀 패키지</p></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="quiz-step hidden" data-step="4">
+          <p class="text-accent-400 text-xs font-bold uppercase tracking-widest mb-3">Step 4</p>
+          <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">예산은 어느 정도 생각하세요?</h2>
+          <p class="text-sm text-zinc-500 mb-8">대략적인 범위면 충분해요.</p>
+          <div class="grid gap-3">
+            <button class="quiz-option" data-key="budget" data-value="low">
+              <iconify-icon icon="solar:wallet-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">10만원 이하</p><p class="text-xs text-zinc-500 mt-0.5">부담 없이 시작하고 싶어요</p></div>
+            </button>
+            <button class="quiz-option" data-key="budget" data-value="mid">
+              <iconify-icon icon="solar:wallet-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">10 ~ 20만원</p><p class="text-xs text-zinc-500 mt-0.5">적당히 투자할 의향 있어요</p></div>
+            </button>
+            <button class="quiz-option" data-key="budget" data-value="high">
+              <iconify-icon icon="solar:wallet-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">20 ~ 40만원</p><p class="text-xs text-zinc-500 mt-0.5">제대로 한 번 해보고 싶어요</p></div>
+            </button>
+            <button class="quiz-option" data-key="budget" data-value="premium">
+              <iconify-icon icon="solar:wallet-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">40만원 이상</p><p class="text-xs text-zinc-500 mt-0.5">최고의 결과를 원해요</p></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="quiz-step hidden" data-step="5">
+          <p class="text-accent-400 text-xs font-bold uppercase tracking-widest mb-3">Step 5</p>
+          <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">추가로 관심 있는 건?</h2>
+          <p class="text-sm text-zinc-500 mb-8">여러 개 선택할 수 있어요. 없으면 넘어가세요.</p>
+          <div class="grid gap-3" id="addon-options">
+            <button class="quiz-option multi" data-key="addons" data-value="hair">
+              <iconify-icon icon="solar:magic-stick-3-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">헤어 스타일링 & 메이크업</p><p class="text-xs text-zinc-500 mt-0.5">촬영 당일 전문 헤어팀 세팅</p></div>
+            </button>
+            <button class="quiz-option multi" data-key="addons" data-value="clothes">
+              <iconify-icon icon="solar:hanger-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">의류 스타일링 · 대여</p><p class="text-xs text-zinc-500 mt-0.5">인플루언서 소장 의류 or 브랜드 코디</p></div>
+            </button>
+            <button class="quiz-option multi" data-key="addons" data-value="dslr">
+              <iconify-icon icon="solar:camera-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">DSLR 스냅 추가 촬영</p><p class="text-xs text-zinc-500 mt-0.5">소니/캐논 카메라 스냅 + 보정 2장</p></div>
+            </button>
+            <button class="quiz-option multi" data-key="addons" data-value="ai">
+              <iconify-icon icon="solar:atom-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">AI 스튜디오 프로필 생성</p><p class="text-xs text-zinc-500 mt-0.5">촬영 사진 기반 AI 컨셉 사진 2장</p></div>
+            </button>
+            <button class="quiz-option multi" data-key="addons" data-value="shopping">
+              <iconify-icon icon="solar:bag-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">오프라인 동행쇼핑</p><p class="text-xs text-zinc-500 mt-0.5">서울권 최대 2시간 함께 쇼핑</p></div>
+            </button>
+            <button class="quiz-option multi" data-key="addons" data-value="lecture">
+              <iconify-icon icon="solar:smartphone-bold" class="text-xl text-accent-400"></iconify-icon>
+              <div class="text-left"><p class="font-semibold text-white">스마트폰 인물사진 강의</p><p class="text-xs text-zinc-500 mt-0.5">셀카·인물사진 잘 찍는 법 배우기</p></div>
+            </button>
+          </div>
+          <button id="quiz-submit" class="mt-8 w-full py-4 rounded-2xl bg-accent-500 hover:bg-accent-600 text-white font-bold text-base transition-all duration-200 inline-flex items-center justify-center gap-2">
+            내 맞춤 패키지 확인하기
+            <iconify-icon icon="solar:arrow-right-linear" class="text-lg"></iconify-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============ RESULT ============ -->
+    <div id="result-container" class="hidden">
+
+      <!-- Recommended package -->
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 text-accent-400 text-xs font-bold uppercase tracking-widest mb-4">
+          <iconify-icon icon="solar:star-bold" class="text-base"></iconify-icon>
+          맞춤 추천 결과
+        </div>
+        <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">
+          당신에게 딱 맞는 패키지는
+        </h2>
+        <p class="font-display text-4xl md:text-5xl font-bold tracking-tighter text-accent-400" id="result-package-name">HYBRID</p>
+      </div>
+
+      <!-- Package selector -->
+      <div class="grid grid-cols-3 gap-3 mb-8">
+        <button class="pkg-select rounded-2xl border-2 p-4 text-center transition-all duration-200" data-pkg="one">
+          <p class="text-xs text-zinc-500 mb-1">1벌 · 1시간30분</p>
+          <p class="font-bold text-white text-sm">ONE</p>
+          <p class="text-accent-400 font-bold text-base mt-1">85,000<span class="text-xs text-zinc-500 font-normal">원</span></p>
+        </button>
+        <button class="pkg-select rounded-2xl border-2 p-4 text-center transition-all duration-200" data-pkg="hybrid">
+          <p class="text-xs text-zinc-500 mb-1">2벌 · 2시간</p>
+          <p class="font-bold text-white text-sm">HYBRID</p>
+          <p class="text-accent-400 font-bold text-base mt-1">160,000<span class="text-xs text-zinc-500 font-normal">원</span></p>
+        </button>
+        <button class="pkg-select rounded-2xl border-2 p-4 text-center transition-all duration-200" data-pkg="allday">
+          <p class="text-xs text-zinc-500 mb-1">4벌 · 5시간+</p>
+          <p class="font-bold text-white text-sm">ALL DAY</p>
+          <p class="text-accent-400 font-bold text-base mt-1">500,000<span class="text-xs text-zinc-500 font-normal">원</span></p>
+        </button>
+      </div>
+
+      <!-- Add-ons -->
+      <div class="mb-8">
+        <h3 class="text-sm font-bold text-zinc-400 uppercase tracking-widest mb-4">추가 옵션</h3>
+        <div class="space-y-3" id="addon-list">
+          <label class="addon-toggle flex items-center justify-between gap-4 rounded-2xl border border-white/5 bg-white/[0.02] px-5 py-4 cursor-pointer hover:border-white/10 transition-all" data-addon="hair">
+            <div class="flex items-center gap-3 min-w-0">
+              <iconify-icon icon="solar:magic-stick-3-bold" class="text-lg text-zinc-500 shrink-0"></iconify-icon>
+              <div class="min-w-0">
+                <p class="font-semibold text-white text-sm truncate">헤어 스타일링 & 메이크업</p>
+                <p class="text-xs text-zinc-500">촬영 당일 전문 헤어팀 세팅</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-sm font-semibold text-zinc-300">+70,000</span>
+              <div class="addon-check w-6 h-6 rounded-lg border-2 border-white/10 flex items-center justify-center transition-all">
+                <iconify-icon icon="solar:check-read-bold" class="text-sm text-white opacity-0 transition-opacity"></iconify-icon>
+              </div>
+            </div>
+          </label>
+          <label class="addon-toggle flex items-center justify-between gap-4 rounded-2xl border border-white/5 bg-white/[0.02] px-5 py-4 cursor-pointer hover:border-white/10 transition-all" data-addon="clothes-rental">
+            <div class="flex items-center gap-3 min-w-0">
+              <iconify-icon icon="solar:hanger-bold" class="text-lg text-zinc-500 shrink-0"></iconify-icon>
+              <div class="min-w-0">
+                <p class="font-semibold text-white text-sm truncate">인플루언서 의류 대여</p>
+                <p class="text-xs text-zinc-500">인플루언서 소장 의류 대여</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-sm font-semibold text-zinc-300">+25,000</span>
+              <div class="addon-check w-6 h-6 rounded-lg border-2 border-white/10 flex items-center justify-center transition-all">
+                <iconify-icon icon="solar:check-read-bold" class="text-sm text-white opacity-0 transition-opacity"></iconify-icon>
+              </div>
+            </div>
+          </label>
+          <label class="addon-toggle flex items-center justify-between gap-4 rounded-2xl border border-white/5 bg-white/[0.02] px-5 py-4 cursor-pointer hover:border-white/10 transition-all" data-addon="clothes-brand">
+            <div class="flex items-center gap-3 min-w-0">
+              <iconify-icon icon="solar:t-shirt-bold" class="text-lg text-zinc-500 shrink-0"></iconify-icon>
+              <div class="min-w-0">
+                <p class="font-semibold text-white text-sm truncate">브랜드 의류 1코디 제작</p>
+                <p class="text-xs text-zinc-500">브랜드 제품으로 촬영 당일 코디</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-sm font-semibold text-zinc-300">+50,000</span>
+              <div class="addon-check w-6 h-6 rounded-lg border-2 border-white/10 flex items-center justify-center transition-all">
+                <iconify-icon icon="solar:check-read-bold" class="text-sm text-white opacity-0 transition-opacity"></iconify-icon>
+              </div>
+            </div>
+          </label>
+          <label class="addon-toggle flex items-center justify-between gap-4 rounded-2xl border border-white/5 bg-white/[0.02] px-5 py-4 cursor-pointer hover:border-white/10 transition-all" data-addon="dslr">
+            <div class="flex items-center gap-3 min-w-0">
+              <iconify-icon icon="solar:camera-bold" class="text-lg text-zinc-500 shrink-0"></iconify-icon>
+              <div class="min-w-0">
+                <p class="font-semibold text-white text-sm truncate">DSLR 스냅 촬영 추가</p>
+                <p class="text-xs text-zinc-500">소니/캐논 스냅 + 프리미엄 보정 2장</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-sm font-semibold text-zinc-300">+120,000</span>
+              <div class="addon-check w-6 h-6 rounded-lg border-2 border-white/10 flex items-center justify-center transition-all">
+                <iconify-icon icon="solar:check-read-bold" class="text-sm text-white opacity-0 transition-opacity"></iconify-icon>
+              </div>
+            </div>
+          </label>
+          <label class="addon-toggle flex items-center justify-between gap-4 rounded-2xl border border-white/5 bg-white/[0.02] px-5 py-4 cursor-pointer hover:border-white/10 transition-all" data-addon="ai">
+            <div class="flex items-center gap-3 min-w-0">
+              <iconify-icon icon="solar:atom-bold" class="text-lg text-zinc-500 shrink-0"></iconify-icon>
+              <div class="min-w-0">
+                <p class="font-semibold text-white text-sm truncate">AI 스튜디오 프로필 생성</p>
+                <p class="text-xs text-zinc-500">촬영 사진 기반 AI 컨셉 2장</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-sm font-semibold text-zinc-300">+70,000</span>
+              <div class="addon-check w-6 h-6 rounded-lg border-2 border-white/10 flex items-center justify-center transition-all">
+                <iconify-icon icon="solar:check-read-bold" class="text-sm text-white opacity-0 transition-opacity"></iconify-icon>
+              </div>
+            </div>
+          </label>
+          <label class="addon-toggle flex items-center justify-between gap-4 rounded-2xl border border-white/5 bg-white/[0.02] px-5 py-4 cursor-pointer hover:border-white/10 transition-all" data-addon="shopping">
+            <div class="flex items-center gap-3 min-w-0">
+              <iconify-icon icon="solar:bag-bold" class="text-lg text-zinc-500 shrink-0"></iconify-icon>
+              <div class="min-w-0">
+                <p class="font-semibold text-white text-sm truncate">오프라인 동행쇼핑</p>
+                <p class="text-xs text-zinc-500">서울권 최대 2시간 함께 쇼핑</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-sm font-semibold text-zinc-300">+100,000</span>
+              <div class="addon-check w-6 h-6 rounded-lg border-2 border-white/10 flex items-center justify-center transition-all">
+                <iconify-icon icon="solar:check-read-bold" class="text-sm text-white opacity-0 transition-opacity"></iconify-icon>
+              </div>
+            </div>
+          </label>
+          <label class="addon-toggle flex items-center justify-between gap-4 rounded-2xl border border-white/5 bg-white/[0.02] px-5 py-4 cursor-pointer hover:border-white/10 transition-all" data-addon="lecture">
+            <div class="flex items-center gap-3 min-w-0">
+              <iconify-icon icon="solar:smartphone-bold" class="text-lg text-zinc-500 shrink-0"></iconify-icon>
+              <div class="min-w-0">
+                <p class="font-semibold text-white text-sm truncate">스마트폰 인물사진 강의</p>
+                <p class="text-xs text-zinc-500">셀카·인물사진 잘 찍는 법</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-sm font-semibold text-zinc-300">+50,000</span>
+              <div class="addon-check w-6 h-6 rounded-lg border-2 border-white/10 flex items-center justify-center transition-all">
+                <iconify-icon icon="solar:check-read-bold" class="text-sm text-white opacity-0 transition-opacity"></iconify-icon>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Retry -->
+      <div class="text-center mb-6">
+        <button id="retry-quiz" class="text-sm text-zinc-500 hover:text-white transition inline-flex items-center gap-1.5">
+          <iconify-icon icon="solar:restart-bold" class="text-base"></iconify-icon>
+          다시 테스트하기
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sticky price bar -->
+  <div id="price-bar" class="fixed bottom-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-xl border-t border-white/5 translate-y-full transition-transform duration-300 hidden">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      <div>
+        <p class="text-xs text-zinc-500">예상 총 금액</p>
+        <p class="font-display text-xl md:text-2xl font-bold text-white tracking-tight">
+          <span id="total-price">160,000</span><span class="text-sm text-zinc-500 font-normal ml-0.5">원</span>
+        </p>
+      </div>
+      <a href="http://pf.kakao.com/_kNxoMn" target="_blank" rel="noopener"
+        class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold text-sm px-6 py-3 rounded-full transition-all duration-200 shadow-lg shadow-accent-500/30">
+        이 구성으로 상담하기
+        <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
+      </a>
+    </div>
+  </div>
+
+  <script src="recommend.js"></script>
+</body>
+</html>
