@@ -285,3 +285,14 @@ select option {
   background: #18181b;
   color: #f5f5f5;
 }
+
+/* Autofill 배경색 오버라이드 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #18181b inset !important;
+  -webkit-text-fill-color: #f5f5f5 !important;
+  caret-color: #f5f5f5;
+  transition: background-color 5000s ease-in-out 0s;
+}

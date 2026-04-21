@@ -682,8 +682,14 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
   const thankyou = document.getElementById('lead-thankyou');
   if (!form || !thankyou) return;
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  // 이미 제출한 적 있으면 바로 완료 화면 표시
+  if (localStorage.getItem('manspick-lead-submitted')) {
+    form.classList.add('hidden');
+    thankyou.classList.remove('hidden');
+  }
+
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
     const name = document.getElementById('lead-name');
     const phone = document.getElementById('lead-phone');
     if (!name?.value.trim() || !phone?.value.trim()) {
@@ -714,6 +720,9 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
     iframe.src = gUrl;
     document.body.appendChild(iframe);
     setTimeout(() => iframe.remove(), 5000);
+
+    // 제출 상태 저장
+    try { localStorage.setItem('manspick-lead-submitted', '1'); } catch (_) {}
 
     // GA4 event
     if (typeof gtag === 'function') {
