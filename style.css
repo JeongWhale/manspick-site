@@ -257,14 +257,53 @@ img, video {
   color: transparent;
 }
 
-/* Countdown urgency pulse */
-.countdown-pulse {
-  animation: countdownPulse 1.5s ease-in-out infinite;
+/* Neon countdown */
+.neon-digit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
-@keyframes countdownPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+.neon-text {
+  color: #fff;
+  text-shadow:
+    0 0 7px rgba(45, 118, 246, 0.8),
+    0 0 20px rgba(45, 118, 246, 0.5),
+    0 0 40px rgba(45, 118, 246, 0.3);
+}
+
+.neon-label {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: rgba(45, 118, 246, 0.5);
+  font-weight: 600;
+}
+
+.neon-blink {
+  animation: neonBlink 1s ease-in-out infinite;
+}
+
+@keyframes neonBlink {
+  0%, 100% {
+    text-shadow:
+      0 0 7px rgba(45, 118, 246, 0.8),
+      0 0 20px rgba(45, 118, 246, 0.5),
+      0 0 40px rgba(45, 118, 246, 0.3);
+  }
+  50% {
+    text-shadow:
+      0 0 10px rgba(45, 118, 246, 1),
+      0 0 30px rgba(45, 118, 246, 0.7),
+      0 0 60px rgba(45, 118, 246, 0.4),
+      0 0 80px rgba(45, 118, 246, 0.2);
+  }
+}
+
+@media (min-width: 768px) {
+  .neon-label {
+    font-size: 10px;
+  }
 }
 
 details summary::-webkit-details-marker {
