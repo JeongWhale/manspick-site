@@ -442,17 +442,13 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   }
 })();
 
-// Sticky bottom CTA + live viewers badge — show after hero, hide over lead-magnet/footer
+// Sticky bottom CTA + live viewers badge + floating social — show after hero, hide over lead-magnet/footer
 (() => {
   const bar = document.getElementById('sticky-cta');
   const viewers = document.getElementById('live-viewers-badge');
-  if (!bar && !viewers) return;
+  const floatingSocial = document.getElementById('floating-social');
+  if (!bar && !viewers && !floatingSocial) return;
   const leadMagnet = document.getElementById('cta');
-  const setState = (el, visible) => {
-    if (!el) return;
-    if (visible) el.classList.remove('opacity-0', 'translate-y-2', 'translate-y-4', 'pointer-events-none');
-    else el.classList.add('opacity-0', 'pointer-events-none');
-  };
   const onScroll = () => {
     const y = window.scrollY;
     const vh = window.innerHeight;
@@ -466,13 +462,23 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     if (show) {
       bar?.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
       viewers?.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+      floatingSocial?.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
     } else {
       bar?.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
       viewers?.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+      floatingSocial?.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
     }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // Back to top
+  const topBtn = document.getElementById('back-to-top');
+  if (topBtn) {
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 })();
 
 // Count-up animation
