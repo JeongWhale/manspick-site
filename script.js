@@ -683,10 +683,10 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
   if (!form || !thankyou) return;
 
   form.addEventListener('submit', (e) => {
+    e.preventDefault();
     const name = document.getElementById('lead-name');
     const phone = document.getElementById('lead-phone');
     if (!name?.value.trim() || !phone?.value.trim()) {
-      e.preventDefault();
       const empty = !name?.value.trim() ? name : phone;
       empty?.focus();
       empty?.classList.add('border-red-500');
@@ -694,14 +694,25 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
       return;
     }
     if (phone.value.replace(/\D/g, '').length < 10) {
-      e.preventDefault();
       phone.focus();
       phone.classList.add('border-red-500');
       setTimeout(() => phone.classList.remove('border-red-500'), 2000);
       return;
     }
 
-    // 유효성 통과 → 폼은 hidden iframe으로 제출됨 (기본 동작)
+    // Google Forms 제출
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSc90Wm3r2-JLs0ZUNT6BNJChr2zJv4ZKUJRZbKQCMoAKA1s6Q/formResponse';
+    const fd = new FormData();
+    fd.append('entry.779413363', name.value.trim());
+    fd.append('entry.2136682804', phone.value.trim());
+    fd.append('entry.212751070', document.getElementById('lead-package')?.value || '');
+    fd.append('entry.852384418', document.getElementById('lead-purpose')?.value || '');
+    fd.append('entry.1671617897', document.getElementById('lead-timing')?.value || '');
+
+    // img ping 방식 (CORS 우회)
+    const params = new URLSearchParams(fd).toString();
+    const img = new Image();
+    img.src = url + '?' + params;
 
     // GA4 event
     if (typeof gtag === 'function') {
@@ -711,10 +722,8 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
       });
     }
 
-    setTimeout(() => {
-      form.classList.add('hidden');
-      thankyou.classList.remove('hidden');
-    }, 500);
+    form.classList.add('hidden');
+    thankyou.classList.remove('hidden');
   });
 })();
 
