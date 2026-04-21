@@ -18,32 +18,43 @@ void function(_mp){if(typeof document==='undefined')return;var _s=document.creat
   document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
 })();
 
-// Confetti burst on consultation CTA click
+// Confetti burst on consultation CTA hover & click
 (() => {
-  const colors = ['#2D76F6', '#57C3FA', '#fff', '#93C5FD', '#60A5FA'];
-  const burst = (x, y) => {
-    const count = 30;
+  const colors = ['#2D76F6', '#57C3FA', '#fff', '#93C5FD', '#60A5FA', '#FBBF24', '#F472B6', '#A78BFA'];
+  const burst = (x, y, big) => {
+    const count = big ? 50 : 35;
     for (let i = 0; i < count; i++) {
       const p = document.createElement('div');
-      const size = Math.random() * 6 + 3;
-      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
-      const velocity = Math.random() * 120 + 60;
+      const size = Math.random() * (big ? 8 : 6) + 3;
+      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.8;
+      const velocity = Math.random() * (big ? 180 : 130) + 70;
       const dx = Math.cos(angle) * velocity;
-      const dy = Math.sin(angle) * velocity - 40;
-      p.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:${size}px;height:${size}px;border-radius:${Math.random()>0.5?'50%':'2px'};background:${colors[i%colors.length]};pointer-events:none;z-index:9999;opacity:1;`;
+      const dy = Math.sin(angle) * velocity - 50;
+      const shapes = ['50%', '2px', '0'];
+      p.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:${size}px;height:${size}px;border-radius:${shapes[i%3]};background:${colors[i%colors.length]};pointer-events:none;z-index:9999;opacity:1;`;
       document.body.appendChild(p);
+      const spin = Math.random() * 720 - 360;
       p.animate([
-        { transform: 'translate(0,0) scale(1)', opacity: 1 },
-        { transform: `translate(${dx}px,${dy + 80}px) scale(0)`, opacity: 0 }
-      ], { duration: 700 + Math.random() * 300, easing: 'cubic-bezier(.15,.8,.3,1)', fill: 'forwards' })
+        { transform: 'translate(0,0) scale(1) rotate(0deg)', opacity: 1 },
+        { transform: `translate(${dx}px,${dy + 100}px) scale(0) rotate(${spin}deg)`, opacity: 0 }
+      ], { duration: 800 + Math.random() * 400, easing: 'cubic-bezier(.15,.8,.3,1)', fill: 'forwards' })
         .onfinish = () => p.remove();
     }
   };
+  let hoverCooldown = false;
+  document.addEventListener('mouseover', (e) => {
+    const link = e.target.closest('a[href*="pf.kakao.com"]');
+    if (!link || hoverCooldown) return;
+    hoverCooldown = true;
+    const rect = link.getBoundingClientRect();
+    burst(rect.left + rect.width / 2, rect.top + rect.height / 2, false);
+    setTimeout(() => { hoverCooldown = false; }, 1500);
+  });
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href*="pf.kakao.com"]');
     if (!link) return;
     const rect = link.getBoundingClientRect();
-    burst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    burst(rect.left + rect.width / 2, rect.top + rect.height / 2, true);
   });
 })();
 
