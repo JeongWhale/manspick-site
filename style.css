@@ -176,15 +176,10 @@ img, video {
   background: linear-gradient(to left, #0a0a0a, transparent);
 }
 
-.marquee-row .glass {
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+.review-card {
   background: #18181b;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  clip-path: inset(0 round 1rem);
-  -webkit-clip-path: inset(0 round 1rem);
-  contain: content;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .marquee-row:hover .marquee-track,
