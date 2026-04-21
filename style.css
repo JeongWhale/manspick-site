@@ -162,6 +162,9 @@ img, video {
   background: #18181b;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  clip-path: inset(0 round 1rem);
+  -webkit-clip-path: inset(0 round 1rem);
+  contain: content;
 }
 
 .marquee-row:hover .marquee-track,
