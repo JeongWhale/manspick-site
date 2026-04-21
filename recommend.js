@@ -64,7 +64,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // ── Option click (single select steps 1-4) ──
+  // ── Option click (single select steps 3-4) ──
   document.querySelectorAll('.quiz-option:not(.multi)').forEach(btn => {
     btn.addEventListener('click', () => {
       const key = btn.dataset.key;
@@ -81,10 +81,38 @@
     });
   });
 
-  // ── Multi-select (step 5) ──
+  // ── Multi-select (steps 1, 2, 5) ──
   document.querySelectorAll('.quiz-option.multi').forEach(btn => {
     btn.addEventListener('click', () => {
       btn.classList.toggle('selected');
+      // Enable/disable "next" button for steps 1 & 2
+      const step = btn.closest('.quiz-step');
+      const nextBtn = step?.querySelector('.step-next');
+      if (nextBtn) {
+        const hasSelection = step.querySelectorAll('.quiz-option.multi.selected').length > 0;
+        nextBtn.disabled = !hasSelection;
+        nextBtn.classList.toggle('opacity-30', !hasSelection);
+        nextBtn.classList.toggle('pointer-events-none', !hasSelection);
+        nextBtn.classList.toggle('bg-accent-500', hasSelection);
+        nextBtn.classList.toggle('text-white', hasSelection);
+        nextBtn.classList.toggle('bg-white/5', !hasSelection);
+        nextBtn.classList.toggle('text-zinc-400', !hasSelection);
+      }
+    });
+  });
+
+  // ── Step next buttons (steps 1 & 2) ──
+  document.querySelectorAll('.step-next').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const step = btn.closest('.quiz-step');
+      const stepNum = +step.dataset.step;
+      const key = stepNum === 1 ? 'purpose' : 'concern';
+      const selected = [];
+      step.querySelectorAll('.quiz-option.multi.selected').forEach(opt => {
+        selected.push(opt.dataset.value);
+      });
+      answers[key] = selected;
+      showStep(stepNum + 1);
     });
   });
 
@@ -103,21 +131,27 @@
   function calculateAndShow() {
     const scores = { one: 0, hybrid: 0, allday: 0 };
 
-    // Step 1: Purpose
-    switch (answers.purpose) {
-      case 'dating':   scores.hybrid += 2; break;
-      case 'sns':      scores.hybrid += 2; scores.allday += 1; break;
-      case 'business': scores.one += 2; scores.hybrid += 1; break;
-      case 'special':  scores.hybrid += 1; scores.allday += 2; break;
-    }
+    // Step 1: Purpose (multi-select)
+    const purposes = Array.isArray(answers.purpose) ? answers.purpose : [answers.purpose];
+    purposes.forEach(p => {
+      switch (p) {
+        case 'dating':   scores.hybrid += 2; break;
+        case 'sns':      scores.hybrid += 2; scores.allday += 1; break;
+        case 'business': scores.one += 2; scores.hybrid += 1; break;
+        case 'special':  scores.hybrid += 1; scores.allday += 2; break;
+      }
+    });
 
-    // Step 2: Concern
-    switch (answers.concern) {
-      case 'styling':  scores.hybrid += 1; scores.allday += 1; break;
-      case 'pose':     scores.one += 1; scores.hybrid += 1; break;
-      case 'grooming': scores.allday += 2; break;
-      case 'total':    scores.allday += 3; break;
-    }
+    // Step 2: Concern (multi-select)
+    const concerns = Array.isArray(answers.concern) ? answers.concern : [answers.concern];
+    concerns.forEach(c => {
+      switch (c) {
+        case 'styling':  scores.hybrid += 1; scores.allday += 1; break;
+        case 'pose':     scores.one += 1; scores.hybrid += 1; break;
+        case 'grooming': scores.allday += 2; break;
+        case 'total':    scores.allday += 3; break;
+      }
+    });
 
     // Step 3: Scale (strong weight)
     switch (answers.scale) {

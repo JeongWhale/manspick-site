@@ -64,50 +64,58 @@
         <div class="quiz-step" data-step="1">
           <p class="text-accent-400 text-xs font-bold uppercase tracking-widest mb-3">Step 1</p>
           <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">촬영 목적이 무엇인가요?</h2>
-          <p class="text-sm text-zinc-500 mb-8">가장 주된 목적 하나를 선택해 주세요.</p>
+          <p class="text-sm text-zinc-500 mb-8">여러 개 선택할 수 있어요.</p>
           <div class="grid gap-3">
-            <button class="quiz-option" data-key="purpose" data-value="dating">
+            <button class="quiz-option multi" data-key="purpose" data-value="dating">
               <iconify-icon icon="solar:heart-bold" class="text-xl text-accent-400"></iconify-icon>
               <div class="text-left"><p class="font-semibold text-white">소개팅 · 결혼정보회사</p><p class="text-xs text-zinc-500 mt-0.5">매칭 앱, 소개팅용 프로필</p></div>
             </button>
-            <button class="quiz-option" data-key="purpose" data-value="sns">
+            <button class="quiz-option multi" data-key="purpose" data-value="sns">
               <iconify-icon icon="solar:camera-bold" class="text-xl text-accent-400"></iconify-icon>
               <div class="text-left"><p class="font-semibold text-white">SNS · 인스타그램</p><p class="text-xs text-zinc-500 mt-0.5">인스타, 카카오 프로필 등</p></div>
             </button>
-            <button class="quiz-option" data-key="purpose" data-value="business">
-              <iconify-icon icon="solar:briefcase-bold" class="text-xl text-accent-400"></iconify-icon>
+            <button class="quiz-option multi" data-key="purpose" data-value="business">
+              <iconify-icon icon="solar:suitcase-bold" class="text-xl text-accent-400"></iconify-icon>
               <div class="text-left"><p class="font-semibold text-white">비즈니스 · 링크드인 · 이력서</p><p class="text-xs text-zinc-500 mt-0.5">취업, 명함, 비즈니스 프로필</p></div>
             </button>
-            <button class="quiz-option" data-key="purpose" data-value="special">
+            <button class="quiz-option multi" data-key="purpose" data-value="special">
               <iconify-icon icon="solar:gift-bold" class="text-xl text-accent-400"></iconify-icon>
               <div class="text-left"><p class="font-semibold text-white">특별한 날 기념</p><p class="text-xs text-zinc-500 mt-0.5">생일, 졸업, 기념일 등</p></div>
             </button>
           </div>
+          <button class="step-next mt-6 w-full py-3.5 rounded-2xl bg-white/5 border border-white/10 text-zinc-400 font-semibold text-sm transition-all duration-200 opacity-30 pointer-events-none" disabled>
+            다음으로
+            <iconify-icon icon="solar:arrow-right-linear" class="text-base ml-1"></iconify-icon>
+          </button>
         </div>
 
         <!-- Step 2 -->
         <div class="quiz-step hidden" data-step="2">
           <p class="text-accent-400 text-xs font-bold uppercase tracking-widest mb-3">Step 2</p>
           <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">지금 가장 큰 고민은?</h2>
-          <p class="text-sm text-zinc-500 mb-8">해당하는 것 하나를 골라주세요.</p>
+          <p class="text-sm text-zinc-500 mb-8">여러 개 선택할 수 있어요.</p>
           <div class="grid gap-3">
-            <button class="quiz-option" data-key="concern" data-value="styling">
+            <button class="quiz-option multi" data-key="concern" data-value="styling">
               <iconify-icon icon="solar:hanger-bold" class="text-xl text-accent-400"></iconify-icon>
               <div class="text-left"><p class="font-semibold text-white">옷 스타일링을 잘 모르겠다</p><p class="text-xs text-zinc-500 mt-0.5">뭘 입어야 잘 나올지 감이 안 옴</p></div>
             </button>
-            <button class="quiz-option" data-key="concern" data-value="pose">
+            <button class="quiz-option multi" data-key="concern" data-value="pose">
               <iconify-icon icon="solar:user-bold" class="text-xl text-accent-400"></iconify-icon>
               <div class="text-left"><p class="font-semibold text-white">포즈 · 표정이 어색하다</p><p class="text-xs text-zinc-500 mt-0.5">사진 찍으면 항상 어색해서 걱정</p></div>
             </button>
-            <button class="quiz-option" data-key="concern" data-value="grooming">
+            <button class="quiz-option multi" data-key="concern" data-value="grooming">
               <iconify-icon icon="solar:magic-stick-3-bold" class="text-xl text-accent-400"></iconify-icon>
               <div class="text-left"><p class="font-semibold text-white">헤어 · 메이크업도 관리받고 싶다</p><p class="text-xs text-zinc-500 mt-0.5">머리부터 발끝까지 전문가 손길</p></div>
             </button>
-            <button class="quiz-option" data-key="concern" data-value="total">
+            <button class="quiz-option multi" data-key="concern" data-value="total">
               <iconify-icon icon="solar:star-bold" class="text-xl text-accent-400"></iconify-icon>
               <div class="text-left"><p class="font-semibold text-white">전체적으로 이미지를 확 바꾸고 싶다</p><p class="text-xs text-zinc-500 mt-0.5">완전히 다른 사람처럼 변신</p></div>
             </button>
           </div>
+          <button class="step-next mt-6 w-full py-3.5 rounded-2xl bg-white/5 border border-white/10 text-zinc-400 font-semibold text-sm transition-all duration-200 opacity-30 pointer-events-none" disabled>
+            다음으로
+            <iconify-icon icon="solar:arrow-right-linear" class="text-base ml-1"></iconify-icon>
+          </button>
         </div>
 
         <!-- Step 3 -->
