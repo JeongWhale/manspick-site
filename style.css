@@ -152,8 +152,28 @@ img, video {
 }
 
 .marquee-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  position: relative;
+}
+
+.marquee-mask::before,
+.marquee-mask::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-mask::before {
+  left: 0;
+  background: linear-gradient(to right, #0a0a0a, transparent);
+}
+
+.marquee-mask::after {
+  right: 0;
+  background: linear-gradient(to left, #0a0a0a, transparent);
 }
 
 .marquee-row .glass {
