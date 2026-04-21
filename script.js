@@ -499,6 +499,27 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   }
 })();
 
+// Sticky CTA rotating text
+(() => {
+  const el = document.getElementById('sticky-cta-text');
+  if (!el) return;
+  const messages = [
+    '당신의 프로필은 <span class="text-accent-400 font-semibold">호감</span>인가요 <span class="text-red-400 font-semibold">비호감</span>인가요?',
+    '프로필 하나로 <span class="text-accent-400 font-semibold">첫인상</span>이 달라집니다',
+    '<span class="text-accent-400 font-semibold">1,127명</span>이 이미 바뀌었습니다',
+    '30초 맞춤 진단으로 <span class="text-accent-400 font-semibold">나에게 딱 맞는 패키지</span>를 찾아보세요',
+  ];
+  let idx = 0;
+  setInterval(() => {
+    el.style.opacity = '0';
+    setTimeout(() => {
+      idx = (idx + 1) % messages.length;
+      el.innerHTML = messages[idx];
+      el.style.opacity = '1';
+    }, 300);
+  }, 3500);
+})();
+
 // Sticky bottom CTA + live viewers badge + floating social — show after hero, hide over lead-magnet/footer
 (() => {
   const bar = document.getElementById('sticky-cta');
