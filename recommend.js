@@ -288,6 +288,22 @@
     totalPriceEl.textContent = total.toLocaleString('ko-KR');
   }
 
+  // ── Addon description toggle ──
+  document.querySelectorAll('.addon-toggle').forEach(label => {
+    const titleRow = label.querySelector('p.font-semibold');
+    if (!titleRow) return;
+    titleRow.style.cursor = 'pointer';
+    titleRow.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const desc = label.querySelector('.addon-desc');
+      const arrow = label.querySelector('.addon-arrow');
+      if (!desc) return;
+      desc.classList.toggle('hidden');
+      if (arrow) arrow.style.transform = desc.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+  });
+
   // ── Direct package select via URL param ──
   (() => {
     const params = new URLSearchParams(window.location.search);
