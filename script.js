@@ -723,6 +723,13 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
       });
     }
 
+    // 잔여 수 감소
+    const remaining = document.getElementById('lead-remaining');
+    if (remaining) {
+      const cur = parseInt(remaining.textContent, 10);
+      if (cur > 0) remaining.textContent = cur - 1;
+    }
+
     form.classList.add('hidden');
     thankyou.classList.remove('hidden');
   });
