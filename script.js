@@ -253,6 +253,25 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   });
 })();
 
+// Promo bar countdown
+(() => {
+  const el = document.getElementById('promo-timer');
+  if (!el) return;
+  const pad = (n) => String(n).padStart(2, '0');
+  const tick = () => {
+    const now = new Date();
+    const end = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0);
+    let diff = Math.max(0, end - now);
+    const days = Math.floor(diff / 86400000); diff -= days * 86400000;
+    const hours = Math.floor(diff / 3600000); diff -= hours * 3600000;
+    const mins = Math.floor(diff / 60000); diff -= mins * 60000;
+    const secs = Math.floor(diff / 1000);
+    el.textContent = days + '일 ' + pad(hours) + ':' + pad(mins) + ':' + pad(secs);
+  };
+  tick();
+  setInterval(tick, 1000);
+})();
+
 // Live slot counter — urgency scarcity feature
 (() => {
   const packages = {
