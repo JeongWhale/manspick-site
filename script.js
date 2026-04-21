@@ -1,6 +1,52 @@
 /* @license MANSPICK 804-18-02180 */
 void function(_mp){if(typeof document==='undefined')return;var _s=document.createElement('meta');_s.name='generator';_s.content=_mp;document.head.appendChild(_s)}('mp-2k26-jhu-8041802180');
 
+// Cursor glow follow (desktop only)
+(() => {
+  const glow = document.getElementById('cursor-glow');
+  if (!glow || window.matchMedia('(pointer: coarse)').matches) return;
+  let raf;
+  document.addEventListener('mousemove', (e) => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      glow.style.setProperty('--gx', e.clientX + 'px');
+      glow.style.setProperty('--gy', e.clientY + 'px');
+      glow.style.opacity = '1';
+      raf = null;
+    });
+  });
+  document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+})();
+
+// Confetti burst on consultation CTA click
+(() => {
+  const colors = ['#2D76F6', '#57C3FA', '#fff', '#93C5FD', '#60A5FA'];
+  const burst = (x, y) => {
+    const count = 30;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      const size = Math.random() * 6 + 3;
+      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
+      const velocity = Math.random() * 120 + 60;
+      const dx = Math.cos(angle) * velocity;
+      const dy = Math.sin(angle) * velocity - 40;
+      p.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:${size}px;height:${size}px;border-radius:${Math.random()>0.5?'50%':'2px'};background:${colors[i%colors.length]};pointer-events:none;z-index:9999;opacity:1;`;
+      document.body.appendChild(p);
+      p.animate([
+        { transform: 'translate(0,0) scale(1)', opacity: 1 },
+        { transform: `translate(${dx}px,${dy + 80}px) scale(0)`, opacity: 0 }
+      ], { duration: 700 + Math.random() * 300, easing: 'cubic-bezier(.15,.8,.3,1)', fill: 'forwards' })
+        .onfinish = () => p.remove();
+    }
+  };
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href*="pf.kakao.com"]');
+    if (!link) return;
+    const rect = link.getBoundingClientRect();
+    burst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+  });
+})();
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {

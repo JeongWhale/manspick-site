@@ -2120,7 +2120,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           평균 응답 1시간 이내 · 지금 상담사 <span class="text-white font-semibold">2명 대기 중</span>
         </p>
         <button type="button" id="open-leadmodal-cta"
-          class="mt-1 text-xs sm:text-sm text-zinc-400 hover:text-white transition inline-flex items-center gap-1.5 underline underline-offset-4 decoration-zinc-700">
+          class="guidebook-blink mt-1 text-xs sm:text-sm text-zinc-400 hover:text-white transition inline-flex items-center gap-1.5 underline underline-offset-4 decoration-zinc-700">
           <iconify-icon icon="solar:document-text-bold"></iconify-icon>
           아직 고민되신다면? 무료 가이드북부터 받아보세요
         </button>
@@ -2522,6 +2522,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </p>
     </div>
   </footer>
+
+  <!-- Cursor glow overlay -->
+  <div id="cursor-glow" class="pointer-events-none fixed inset-0 z-[1] opacity-0 transition-opacity duration-300" aria-hidden="true"
+    style="background: radial-gradient(600px circle at var(--gx,50%) var(--gy,50%), rgba(45,118,246,0.06), transparent 60%)"></div>
 
   <script src="script.js"></script>
 </body>

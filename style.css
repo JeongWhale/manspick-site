@@ -343,6 +343,18 @@ img, video {
   }
 }
 
+/* Guidebook blink shimmer */
+.guidebook-blink {
+  animation: guidebookBlink 3s ease-in-out infinite;
+}
+
+@keyframes guidebookBlink {
+  0%, 70%, 100% { opacity: 1; }
+  80% { opacity: 0.5; }
+  90% { opacity: 1; }
+  95% { opacity: 0.5; }
+}
+
 details summary::-webkit-details-marker {
   display: none;
 }
