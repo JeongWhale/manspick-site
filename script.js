@@ -702,12 +702,12 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
 
     // Google Forms 제출 (GET via img ping)
     const base = 'https://docs.google.com/forms/d/e/1FAIpQLSc90Wm3r2-JLs0ZUNT6BNJChr2zJv4ZKUJRZbKQCMoAKA1s6Q/formResponse?';
-    const e = encodeURIComponent;
-    const qs = 'entry.779413363=' + e(name.value.trim())
-      + '&entry.2136682804=' + e(phone.value.trim())
-      + '&entry.212751070=' + e(document.getElementById('lead-package')?.value || '')
-      + '&entry.852384418=' + e(document.getElementById('lead-purpose')?.value || '')
-      + '&entry.1671617897=' + e(document.getElementById('lead-timing')?.value || '');
+    const enc = encodeURIComponent;
+    const qs = 'entry.779413363=' + enc(name.value.trim())
+      + '&entry.2136682804=' + enc(phone.value.trim())
+      + '&entry.212751070=' + enc(document.getElementById('lead-package')?.value || '')
+      + '&entry.852384418=' + enc(document.getElementById('lead-purpose')?.value || '')
+      + '&entry.1671617897=' + enc(document.getElementById('lead-timing')?.value || '');
     new Image().src = base + qs;
 
     // GA4 event
