@@ -700,19 +700,15 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
       return;
     }
 
-    // Google Forms 제출
-    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSc90Wm3r2-JLs0ZUNT6BNJChr2zJv4ZKUJRZbKQCMoAKA1s6Q/formResponse';
-    const fd = new FormData();
-    fd.append('entry.779413363', name.value.trim());
-    fd.append('entry.2136682804', phone.value.trim());
-    fd.append('entry.212751070', document.getElementById('lead-package')?.value || '');
-    fd.append('entry.852384418', document.getElementById('lead-purpose')?.value || '');
-    fd.append('entry.1671617897', document.getElementById('lead-timing')?.value || '');
-
-    // img ping 방식 (CORS 우회)
-    const params = new URLSearchParams(fd).toString();
-    const img = new Image();
-    img.src = url + '?' + params;
+    // Google Forms 제출 (GET via img ping)
+    const base = 'https://docs.google.com/forms/d/e/1FAIpQLSc90Wm3r2-JLs0ZUNT6BNJChr2zJv4ZKUJRZbKQCMoAKA1s6Q/formResponse?';
+    const e = encodeURIComponent;
+    const qs = 'entry.779413363=' + e(name.value.trim())
+      + '&entry.2136682804=' + e(phone.value.trim())
+      + '&entry.212751070=' + e(document.getElementById('lead-package')?.value || '')
+      + '&entry.852384418=' + e(document.getElementById('lead-purpose')?.value || '')
+      + '&entry.1671617897=' + e(document.getElementById('lead-timing')?.value || '');
+    new Image().src = base + qs;
 
     // GA4 event
     if (typeof gtag === 'function') {
