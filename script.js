@@ -424,7 +424,7 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   const bar = document.getElementById('sticky-cta');
   const viewers = document.getElementById('live-viewers-badge');
   if (!bar && !viewers) return;
-  const leadMagnet = document.getElementById('lead-magnet');
+  const leadMagnet = document.getElementById('cta');
   const setState = (el, visible) => {
     if (!el) return;
     if (visible) el.classList.remove('opacity-0', 'translate-y-2', 'translate-y-4', 'pointer-events-none');
@@ -678,7 +678,7 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
 
 // Lead form submission → show thank-you overlay
 (() => {
-  const form = document.querySelector('#lead-magnet form');
+  const form = document.querySelector('#lead-modal form');
   const thankyou = document.getElementById('lead-thankyou');
   if (!form || !thankyou) return;
 
