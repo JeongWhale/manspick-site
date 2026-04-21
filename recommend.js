@@ -288,6 +288,16 @@
     totalPriceEl.textContent = total.toLocaleString('ko-KR');
   }
 
+  // ── Direct package select via URL param ──
+  (() => {
+    const params = new URLSearchParams(window.location.search);
+    const pkg = params.get('pkg');
+    if (pkg && packages[pkg]) {
+      selectedPkg = pkg;
+      showResult();
+    }
+  })();
+
   // ── Retry ──
   document.getElementById('retry-quiz').addEventListener('click', () => {
     resultContainer.classList.add('hidden');
