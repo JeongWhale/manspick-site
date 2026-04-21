@@ -740,8 +740,8 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
   const el = document.getElementById('cta-toggle');
   if (!el) return;
   const states = [
-    { html: '<span class="text-accent-400">호감</span>인가요?', opacity: '1' },
-    { html: '<span class="text-red-400">비호감</span>인가요?', opacity: '1' },
+    { html: '<span class="text-red-400">비호감</span>인가요?' },
+    { html: '<span class="text-accent-400">호감</span>인가요?' },
   ];
   let idx = 0;
   setInterval(() => {
