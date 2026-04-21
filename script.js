@@ -253,31 +253,6 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   });
 })();
 
-// Month-end countdown timer
-(() => {
-  const d = document.getElementById('cd-days');
-  const h = document.getElementById('cd-hours');
-  const m = document.getElementById('cd-mins');
-  const s = document.getElementById('cd-secs');
-  if (!d || !h || !m || !s) return;
-  const pad = (n) => String(n).padStart(2, '0');
-  const tick = () => {
-    const now = new Date();
-    const end = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0);
-    let diff = Math.max(0, end - now);
-    const days = Math.floor(diff / 86400000); diff -= days * 86400000;
-    const hours = Math.floor(diff / 3600000); diff -= hours * 3600000;
-    const mins = Math.floor(diff / 60000); diff -= mins * 60000;
-    const secs = Math.floor(diff / 1000);
-    d.textContent = pad(days);
-    h.textContent = pad(hours);
-    m.textContent = pad(mins);
-    s.textContent = pad(secs);
-  };
-  tick();
-  setInterval(tick, 1000);
-})();
-
 // Live slot counter — urgency scarcity feature
 (() => {
   const packages = {
