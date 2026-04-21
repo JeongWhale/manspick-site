@@ -735,6 +735,25 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
   });
 })();
 
+/* ── FINAL CTA 호감/비호감 토글 애니메이션 ── */
+(() => {
+  const el = document.getElementById('cta-toggle');
+  if (!el) return;
+  const states = [
+    { html: '<span class="text-accent-400">호감</span>인가요?', opacity: '1' },
+    { html: '<span class="text-red-400">비호감</span>인가요?', opacity: '1' },
+  ];
+  let idx = 0;
+  setInterval(() => {
+    el.style.opacity = '0';
+    setTimeout(() => {
+      idx = (idx + 1) % states.length;
+      el.innerHTML = states[idx].html;
+      el.style.opacity = '1';
+    }, 400);
+  }, 2500);
+})();
+
 /* ── FAQ 더보기 토글 ── */
 (() => {
   const btn = document.getElementById('faq-toggle');
