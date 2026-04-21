@@ -253,8 +253,24 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   });
 })();
 
-// Promo bar countdown + seat sync
+// Promo bar: show after hero, countdown + seat sync
 (() => {
+  const bar = document.getElementById('promo-bar');
+  const nav = document.getElementById('main-nav');
+  const hero = document.getElementById('hero');
+  if (bar && hero) {
+    const onScroll = () => {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      const show = heroBottom < 0;
+      bar.classList.toggle('-translate-y-full', !show);
+      bar.classList.toggle('translate-y-0', show);
+      if (nav) {
+        nav.style.top = show ? '34px' : '';
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
   const timer = document.getElementById('promo-timer');
   const seats = document.getElementById('promo-seats');
   if (!timer) return;
