@@ -700,36 +700,20 @@ document.querySelectorAll('.ba-toggle').forEach((btn) => {
       return;
     }
 
-    // Google Forms 제출 (동적 iframe + form POST)
-    const gUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc90Wm3r2-JLs0ZUNT6BNJChr2zJv4ZKUJRZbKQCMoAKA1s6Q/formResponse';
+    // Google Forms 제출 (iframe src GET — 브라우저 직접 접속과 동일)
+    const enc = encodeURIComponent;
+    const gUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc90Wm3r2-JLs0ZUNT6BNJChr2zJv4ZKUJRZbKQCMoAKA1s6Q/formResponse'
+      + '?entry.779413363=' + enc(name.value.trim())
+      + '&entry.2136682804=' + enc(phone.value.trim())
+      + '&entry.212751070=' + enc(document.getElementById('lead-package')?.value || '')
+      + '&entry.852384418=' + enc(document.getElementById('lead-purpose')?.value || '')
+      + '&entry.1671617897=' + enc(document.getElementById('lead-timing')?.value || '')
+      + '&submit=Submit';
     const iframe = document.createElement('iframe');
-    iframe.name = 'gform-iframe-' + Date.now();
     iframe.style.display = 'none';
+    iframe.src = gUrl;
     document.body.appendChild(iframe);
-
-    const gForm = document.createElement('form');
-    gForm.method = 'POST';
-    gForm.action = gUrl;
-    gForm.target = iframe.name;
-    gForm.style.display = 'none';
-
-    const fields = {
-      'entry.779413363': name.value.trim(),
-      'entry.2136682804': phone.value.trim(),
-      'entry.212751070': document.getElementById('lead-package')?.value || '',
-      'entry.852384418': document.getElementById('lead-purpose')?.value || '',
-      'entry.1671617897': document.getElementById('lead-timing')?.value || '',
-    };
-    for (const [k, v] of Object.entries(fields)) {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = k;
-      input.value = v;
-      gForm.appendChild(input);
-    }
-    document.body.appendChild(gForm);
-    gForm.submit();
-    setTimeout(() => { gForm.remove(); iframe.remove(); }, 5000);
+    setTimeout(() => iframe.remove(), 5000);
 
     // GA4 event
     if (typeof gtag === 'function') {
