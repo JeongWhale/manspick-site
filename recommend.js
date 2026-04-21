@@ -17,6 +17,12 @@
     'lecture':        50000,
   };
 
+  // Outfits per package (limits qty-based addons)
+  const packageOutfits = { one: 1, hybrid: 2, allday: 4 };
+
+  // Qty-based addons (clothes-rental, clothes-brand)
+  const addonQty = { 'clothes-rental': 0, 'clothes-brand': 0 };
+
   const packageIncludes = {
     one: [
       '1:1 사전 컨설팅', '의상 가이드 + 코디북', '1시간30분 촬영 · 1벌 · 스팟7',
@@ -236,6 +242,10 @@
     // Set addon toggles
     updateAddonToggles();
 
+    // Reset qty addons and update max labels
+    updateQtyMaxLabels();
+    document.querySelectorAll('.addon-qty-wrap').forEach(wrap => updateQtyDisplay(wrap));
+
     // Show price bar
     priceBar.classList.remove('hidden');
     requestAnimationFrame(() => {
@@ -263,6 +273,7 @@
       selectedPkg = btn.dataset.pkg;
       resultPkgName.textContent = packages[selectedPkg].name;
       updatePkgSelector();
+      updateQtyMaxLabels();
       updateTotal();
     });
   });
@@ -312,7 +323,12 @@
   const summaryList = document.getElementById('summary-list');
   function updateTotal() {
     let total = packages[selectedPkg].price;
+    // Toggle-based addons
     selectedAddons.forEach(id => { total += addonPrices[id] || 0; });
+    // Qty-based addons
+    for (const [id, qty] of Object.entries(addonQty)) {
+      total += (addonPrices[id] || 0) * qty;
+    }
     totalPriceEl.textContent = total.toLocaleString('ko-KR');
     // Build summary chips
     if (!summaryList) return;
@@ -320,21 +336,83 @@
     selectedAddons.forEach(id => {
       if (addonLabels[id]) items.push(addonLabels[id]);
     });
+    for (const [id, qty] of Object.entries(addonQty)) {
+      if (qty > 0 && addonLabels[id]) items.push(addonLabels[id] + ' ×' + qty);
+    }
     summaryList.innerHTML = items.map(t =>
       `<span class="text-[10px] text-zinc-400 bg-white/5 rounded-full px-2 py-0.5">${t}</span>`
     ).join('');
   }
 
-  // ── Addon description toggle ──
-  document.querySelectorAll('.addon-toggle').forEach(label => {
-    const titleRow = label.querySelector('p.font-semibold');
+  // ── Qty-based addon controls ──
+  function getMaxOutfits() { return packageOutfits[selectedPkg] || 2; }
+
+  function updateQtyMaxLabels() {
+    const max = getMaxOutfits();
+    document.querySelectorAll('.addon-qty-wrap').forEach(wrap => {
+      const label = wrap.querySelector('.addon-max-label');
+      if (label) label.textContent = '최대 ' + max + '벌';
+      const id = wrap.dataset.addon;
+      if (addonQty[id] > max) {
+        addonQty[id] = max;
+        updateQtyDisplay(wrap);
+        updateTotal();
+      }
+    });
+  }
+
+  function updateQtyDisplay(wrap) {
+    const id = wrap.dataset.addon;
+    const qty = addonQty[id];
+    const unit = +wrap.dataset.unit;
+    wrap.querySelector('.qty-value').textContent = qty;
+    const subtotal = wrap.querySelector('.addon-subtotal');
+    if (qty > 0) {
+      subtotal.textContent = '+' + (qty * unit).toLocaleString('ko-KR');
+      subtotal.classList.replace('text-zinc-500', 'text-zinc-300');
+      wrap.classList.add('border-accent-500/40', 'bg-accent-500/5');
+      wrap.classList.remove('border-white/5', 'bg-white/[0.02]');
+    } else {
+      subtotal.textContent = '–';
+      subtotal.classList.replace('text-zinc-300', 'text-zinc-500');
+      wrap.classList.remove('border-accent-500/40', 'bg-accent-500/5');
+      wrap.classList.add('border-white/5', 'bg-white/[0.02]');
+    }
+  }
+
+  document.querySelectorAll('.addon-qty-wrap').forEach(wrap => {
+    const id = wrap.dataset.addon;
+    wrap.querySelector('.qty-minus').addEventListener('click', () => {
+      if (addonQty[id] > 0) { addonQty[id]--; updateQtyDisplay(wrap); updateTotal(); }
+    });
+    wrap.querySelector('.qty-plus').addEventListener('click', () => {
+      if (addonQty[id] < getMaxOutfits()) { addonQty[id]++; updateQtyDisplay(wrap); updateTotal(); }
+    });
+  });
+
+  // ── Summary toggle ──
+  (() => {
+    const toggleBtn = document.getElementById('summary-toggle');
+    const list = document.getElementById('summary-list');
+    if (!toggleBtn || !list) return;
+    toggleBtn.addEventListener('click', () => {
+      list.classList.toggle('hidden');
+      const arrow = toggleBtn.querySelector('.summary-arrow');
+      if (arrow) arrow.style.transform = list.classList.contains('hidden') ? '' : 'rotate(180deg)';
+      toggleBtn.querySelector('span').textContent = list.classList.contains('hidden') ? '받는 구성 보기' : '접기';
+    });
+  })();
+
+  // ── Addon description toggle (both toggle and qty cards) ──
+  document.querySelectorAll('.addon-toggle, .addon-qty-wrap').forEach(el => {
+    const titleRow = el.querySelector('p.font-semibold');
     if (!titleRow) return;
     titleRow.style.cursor = 'pointer';
     titleRow.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const desc = label.querySelector('.addon-desc');
-      const arrow = label.querySelector('.addon-arrow');
+      const desc = el.querySelector('.addon-desc');
+      const arrow = el.querySelector('.addon-arrow');
       if (!desc) return;
       desc.classList.toggle('hidden');
       if (arrow) arrow.style.transform = desc.classList.contains('hidden') ? '' : 'rotate(180deg)';
@@ -358,6 +436,8 @@
     priceBar.classList.add('translate-y-full');
     priceBar.classList.remove('translate-y-0');
     selectedAddons.clear();
+    for (const key of Object.keys(addonQty)) addonQty[key] = 0;
+    document.querySelectorAll('.addon-qty-wrap').forEach(wrap => updateQtyDisplay(wrap));
 
     // Reset visuals
     document.querySelectorAll('.quiz-option').forEach(btn => btn.classList.remove('selected'));

@@ -503,11 +503,15 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 (() => {
   const el = document.getElementById('sticky-cta-text');
   if (!el) return;
-  const messages = [
+  const isMobile = window.innerWidth < 640;
+  const messages = isMobile ? [
+    '<span class="text-accent-400 font-semibold">호감</span> vs <span class="text-red-400 font-semibold">비호감</span>, 당신은?',
+    '<span class="text-accent-400 font-semibold">첫인상</span>, 프로필로 바꾸세요',
+    '<span class="text-accent-400 font-semibold">1,127명</span>이 변했습니다, <span class="text-white font-semibold">다음은 당신</span>',
+  ] : [
     '당신의 프로필은 <span class="text-accent-400 font-semibold">호감</span>인가요 <span class="text-red-400 font-semibold">비호감</span>인가요?',
     '프로필 하나로 <span class="text-accent-400 font-semibold">첫인상</span>이 달라집니다',
-    '<span class="text-accent-400 font-semibold">1,127명</span>이 이미 바뀌었습니다',
-    '30초 맞춤 진단으로 <span class="text-accent-400 font-semibold">나에게 딱 맞는 패키지</span>를 찾아보세요',
+    '<span class="text-accent-400 font-semibold">1,127명</span>이 이미 바뀌었습니다, <span class="text-white font-semibold">다음은 당신 차례입니다</span>',
   ];
   let idx = 0;
   setInterval(() => {
