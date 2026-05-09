@@ -315,6 +315,26 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   const bar = document.getElementById('promo-bar');
   const nav = document.getElementById('main-nav');
   const hero = document.getElementById('hero');
+  const promoMonthLabel = document.getElementById('promo-month-label');
+  const ctaMonthLabel = document.getElementById('cta-month-label');
+  const getKstDateParts = () => {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Seoul',
+      year: 'numeric',
+      month: 'numeric',
+    }).formatToParts(new Date());
+    return {
+      year: Number(parts.find((part) => part.type === 'year').value),
+      month: Number(parts.find((part) => part.type === 'month').value),
+    };
+  };
+  const updateMonthLabels = () => {
+    const { year, month } = getKstDateParts();
+    const nextMonth = month === 12 ? 1 : month + 1;
+    if (promoMonthLabel) promoMonthLabel.textContent = month + '월 한정 최대 44% 할인';
+    if (ctaMonthLabel) ctaMonthLabel.textContent = year + '년 ' + month + '월 잔여 7석 · ' + nextMonth + '월 예약 오픈';
+  };
+  updateMonthLabels();
   if (bar && hero) {
     const onScroll = () => {
       const heroBottom = hero.getBoundingClientRect().bottom;
