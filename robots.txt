@@ -14,4 +14,4 @@ Allow: /
 User-agent: bingbot
 Allow: /
 
-Sitemap: https://manspick.kr/sitemap.xml
+Sitemap: https://www.manspick.co.kr/sitemap.xml
