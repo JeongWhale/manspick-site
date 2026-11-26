@@ -164,6 +164,7 @@
             display: ['Geist', 'Pretendard', 'system-ui', 'sans-serif'],
           },
           colors: {
+            zinc: { 500: '#85858e' },  // 기본 #71717a는 검은 배경 대비 3.9:1이라 4.5:1 이상으로 밝힘
             accent: {
               50: '#eaf3ff',
               100: '#cfe2ff',
@@ -213,7 +214,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Sticky promo bar -->
   <div id="promo-bar" class="fixed top-0 left-0 right-0 z-50 bg-accent-500 text-white text-center py-1.5 md:py-2 -translate-y-full transition-transform duration-300 ease-out">
-    <div class="flex items-center justify-center gap-1.5 md:gap-2 text-[11px] md:text-xs font-semibold tracking-wide">
+    <div class="flex items-center justify-center gap-1.5 md:gap-2 text-xs font-semibold tracking-wide">
       <span class="inline-block w-1 h-1 rounded-full bg-white/60 animate-pulse"></span>
       <span id="promo-month-label">5월 한정 최대 44% 할인</span>
       <span class="text-white/40">·</span>
@@ -307,12 +308,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="_mp_k9x7" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none"><span data-v="&#8203;&#8204;&#8203;&#8204;&#8203;&#8203;&#8204;&#8204;&#8203;&#8203;&#8204;&#8203;&#8203;&#8204;&#8204;&#8203;&#8203;&#8204;&#8203;&#8204;&#8203;&#8203;&#8204;&#8204;&#8203;&#8204;&#8204;&#8203;&#8203;&#8203;&#8204;&#8203;&#8203;&#8204;&#8204;&#8204;&#8203;&#8203;&#8203;&#8203;&#8204;&#8203;&#8203;&#8204;&#8203;&#8203;&#8203;&#8204;&#8203;&#8204;&#8203;&#8203;">MP</span></div>
 
   <!-- ============ HERO ============ -->
-  <section id="hero" class="relative lg:min-h-[100dvh] mesh-bg overflow-hidden pt-28 sm:pt-32 pb-16 sm:pb-20">
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="hero" class="relative min-h-[100dvh] flex flex-col justify-center mesh-bg overflow-hidden pt-28 sm:pt-32 pb-20">
+    <div class="relative w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col items-center text-center">
 
         <div
-          class="reveal inline-flex items-center gap-2 glass rounded-full px-3 sm:px-4 py-1.5 text-[10px] sm:text-xs text-zinc-300 mb-6 sm:mb-7 max-w-[92vw]">
+          class="reveal inline-flex items-center gap-2 glass rounded-full px-3 sm:px-4 py-1.5 text-xs text-zinc-300 mb-6 sm:mb-7 max-w-[92vw]">
           <span class="w-1.5 h-1.5 rounded-full bg-accent-400 animate-pulse shrink-0"></span>
           <span class="truncate">46K 인플루언서가 직접 찍어주는 · 남성 전문 프로필 촬영</span>
         </div>
@@ -330,7 +331,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <p class="reveal text-[15px] sm:text-lg md:text-xl text-zinc-400 leading-[1.7] sm:leading-relaxed max-w-[58ch] mb-8 sm:mb-10 break-keep px-2"
           style="transition-delay: 200ms;">
-          <span class="text-white font-medium">7명의 전문가가 패션·헤어·보정까지 알아서 다 해드립니다.</span><br>
+          <span class="text-white font-medium">7명의 전문가가 패션·헤어·보정까지<br class="sm:hidden"> 알아서 다 해드립니다.</span><br>
           <span class="text-white font-medium">113만 유튜버부터 대기업 임원, 변호사, 의사까지 —</span>
         </p>
 
@@ -378,14 +379,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <iconify-icon icon="solar:star-bold"></iconify-icon>
               <span class="text-white font-semibold text-xs sm:text-sm ml-1">4.97</span>
             </div>
-            <p class="text-[10px] sm:text-xs text-zinc-500 break-keep">평범남 1,127명+ 호감형으로 바뀌었습니다</p>
+            <p class="text-xs text-zinc-500 break-keep">평범남 1,127명+ 호감형으로 바뀌었습니다</p>
           </div>
         </div>
       </div>
     </div>
 
     <div
-      class="mt-10 sm:mt-12 lg:mt-0 lg:absolute lg:bottom-8 lg:left-1/2 lg:-translate-x-1/2 flex flex-col items-center gap-2 text-zinc-500 text-xs">
+      class="absolute bottom-5 lg:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-500 text-xs">
       <span class="uppercase tracking-widest">scroll</span>
       <iconify-icon icon="solar:arrow-down-linear" class="text-base animate-bounce"></iconify-icon>
     </div>
@@ -394,7 +395,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============ MARQUEE ============ -->
   <section class="relative py-12 md:py-14 lg:py-16 border-y border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-center text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest mb-6 md:mb-10">
+      <p class="text-center text-xs text-zinc-500 uppercase tracking-widest mb-6 md:mb-10">
         FEATURED IN · 누가 맨즈픽을 찾아오나요?
       </p>
       <div class="marquee-row overflow-hidden relative">
@@ -448,7 +449,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ WHY / PROBLEM & SOLUTION ============ -->
-  <section id="why" class="relative lg:min-h-[100dvh] lg:flex lg:items-center py-20 md:py-24 lg:py-16">
+  <section id="why" class="relative lg:min-h-[100dvh] lg:flex lg:items-center py-16 md:py-24 lg:py-16">
     <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-12 gap-12 md:gap-14 lg:gap-14 items-center">
 
@@ -477,7 +478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <!-- Self-check chips -->
           <div class="selfcheck">
-            <p class="text-[11px] text-zinc-500 font-semibold uppercase tracking-widest mb-3 flex items-center gap-2">
+            <p class="text-xs text-zinc-500 font-semibold uppercase tracking-widest mb-3 flex items-center gap-2">
               <iconify-icon icon="solar:checklist-minimalistic-bold" class="text-accent-400 text-base"></iconify-icon>
               지금 당신의 고민은?
             </p>
@@ -503,13 +504,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="reveal lg:col-span-7" style="transition-delay: 120ms;">
           <div class="relative glass-strong rounded-3xl p-5 md:p-7 border border-white/10">
             <div
-              class="absolute -top-3 right-5 md:right-7 bg-accent-500 text-white text-[10px] md:text-xs font-bold uppercase tracking-widest px-3.5 py-1 rounded-full shadow-lg">
+              class="absolute -top-3 right-5 md:right-7 bg-accent-500 text-white text-xs font-bold uppercase tracking-widest px-3.5 py-1 rounded-full shadow-lg">
               전문가 직접 분석
             </div>
             <p class="font-display text-lg md:text-xl font-bold text-white text-center mb-1">
               맨즈픽 촬영 디렉팅 진단
             </p>
-            <p class="text-[11px] md:text-xs text-zinc-500 text-center mb-3">
+            <p class="text-xs text-zinc-500 text-center mb-3">
               일반 셀카 대비 맨즈픽 디렉팅 후 완성도 비교
             </p>
             <div class="relative mx-auto" style="max-width: 440px; aspect-ratio: 1;">
@@ -522,7 +523,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <iconify-icon icon="solar:camera-bold"></iconify-icon>
                 </div>
                 <p class="text-white font-bold text-xs md:text-sm">앵글 진단</p>
-                <p class="text-[10px] md:text-[11px] text-zinc-500 leading-snug mt-0.5 break-keep">얼굴형·체형별<br>최적 각도</p>
+                <p class="text-xs text-zinc-500 leading-snug mt-0.5 break-keep">얼굴형·체형별<br>최적 각도</p>
               </div>
               <div class="flex flex-col items-center text-center">
                 <div
@@ -530,7 +531,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <iconify-icon icon="solar:hanger-bold"></iconify-icon>
                 </div>
                 <p class="text-white font-bold text-xs md:text-sm">의상·톤 매칭</p>
-                <p class="text-[10px] md:text-[11px] text-zinc-500 leading-snug mt-0.5 break-keep">피부톤에 맞는<br>컬러 디렉팅</p>
+                <p class="text-xs text-zinc-500 leading-snug mt-0.5 break-keep">피부톤에 맞는<br>컬러 디렉팅</p>
               </div>
               <div class="flex flex-col items-center text-center">
                 <div
@@ -538,7 +539,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <iconify-icon icon="solar:user-hand-up-bold"></iconify-icon>
                 </div>
                 <p class="text-white font-bold text-xs md:text-sm">포즈 디렉팅</p>
-                <p class="text-[10px] md:text-[11px] text-zinc-500 leading-snug mt-0.5 break-keep">표정·시선·손<br>현장 가이드</p>
+                <p class="text-xs text-zinc-500 leading-snug mt-0.5 break-keep">표정·시선·손<br>현장 가이드</p>
               </div>
             </div>
           </div>
@@ -548,7 +549,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ BEFORE & AFTER GALLERY ============ -->
-  <section id="before-after" class="relative py-20 md:py-24 lg:py-32">
+  <section id="before-after" class="section-band relative py-16 md:py-24 lg:py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="reveal text-center max-w-3xl mx-auto mb-14 md:mb-16 lg:mb-20">
         <p class="text-accent-400 text-sm font-semibold uppercase tracking-widest mb-4">Before & After</p>
@@ -722,7 +723,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ NOTIFICATION — real impact ============ -->
-  <section class="relative py-20 md:py-24 lg:py-32 overflow-hidden">
+  <section class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Mehrabian quote -->
       <div class="reveal text-center max-w-2xl mx-auto mb-10 md:mb-12">
@@ -761,7 +762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="min-w-0">
                 <div class="flex items-center gap-2 mb-0.5">
                   <span class="text-white text-xs font-bold">소개팅 앱</span>
-                  <span class="text-zinc-600 text-[10px]">지금</span>
+                  <span class="text-zinc-500 text-xs">지금</span>
                 </div>
                 <p class="text-zinc-300 text-[13px] leading-snug">OOO님이 먼저 좋아요를 보냈습니다 💘</p>
               </div>
@@ -773,7 +774,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="min-w-0">
                 <div class="flex items-center gap-2 mb-0.5">
                   <span class="text-white text-xs font-bold">결혼정보회사</span>
-                  <span class="text-zinc-600 text-[10px]">3분 전</span>
+                  <span class="text-zinc-500 text-xs">3분 전</span>
                 </div>
                 <p class="text-zinc-300 text-[13px] leading-snug">이번 주 매칭 요청 3건이 도착했습니다</p>
               </div>
@@ -785,7 +786,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="min-w-0">
                 <div class="flex items-center gap-2 mb-0.5">
                   <span class="text-white text-xs font-bold">카카오톡</span>
-                  <span class="text-zinc-600 text-[10px]">15분 전</span>
+                  <span class="text-zinc-500 text-xs">15분 전</span>
                 </div>
                 <p class="text-zinc-300 text-[13px] leading-snug">"오빠 프사 바꿨어? 분위기 완전 달라졌다 😳"</p>
               </div>
@@ -797,7 +798,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="min-w-0">
                 <div class="flex items-center gap-2 mb-0.5">
                   <span class="text-white text-xs font-bold">Instagram</span>
-                  <span class="text-zinc-600 text-[10px]">1시간 전</span>
+                  <span class="text-zinc-500 text-xs">1시간 전</span>
                 </div>
                 <p class="text-zinc-300 text-[13px] leading-snug">프로필 방문 <span class="text-white font-semibold">+127명</span> · 팔로우 요청 <span class="text-white font-semibold">12건</span></p>
               </div>
@@ -809,7 +810,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="min-w-0">
                 <div class="flex items-center gap-2 mb-0.5">
                   <span class="text-white text-xs font-bold">LinkedIn</span>
-                  <span class="text-zinc-600 text-[10px]">2시간 전</span>
+                  <span class="text-zinc-500 text-xs">2시간 전</span>
                 </div>
                 <p class="text-zinc-300 text-[13px] leading-snug">헤드헌터로부터 연결 요청이 도착했습니다</p>
               </div>
@@ -822,7 +823,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ 5 HOWs ============ -->
-  <section id="how" class="py-20 md:py-24 lg:py-32 relative">
+  <section id="how" class="section-band py-16 md:py-24 lg:py-32 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="reveal max-w-3xl mb-14 md:mb-16 lg:mb-20">
         <p class="text-accent-400 text-sm font-semibold uppercase tracking-widest mb-4">5 HOWs · 6년의 노하우</p>
@@ -1005,7 +1006,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <iconify-icon icon="solar:double-alt-arrow-right-bold" class="text-accent-400"></iconify-icon>
                   20대 여성 보정가 교차검증
                 </p>
-                <p class="text-[11px] text-zinc-400 mt-1">남녀 모두에게 호감인 컷만 드립니다</p>
+                <p class="text-xs text-zinc-400 mt-1">남녀 모두에게 호감인 컷만 드립니다</p>
               </div>
             </div>
           </div>
@@ -1039,7 +1040,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             "한 끗 차이의 위트를 담은 촬영." <br><br>
             같은 공간이라도 누가 찍느냐가 정말 중요합니다. 수만명에게 패션과 사랑으로 사진 받고 있는 인플루언서팀이 끊임없이 고민한 구도와 포즈로 촬영해드립니다.
           </p>
-          <div class="flex flex-wrap items-center gap-2 text-[11px] text-zinc-500">
+          <div class="flex flex-wrap items-center gap-2 text-xs text-zinc-500">
             <span class="flex items-center gap-1.5 glass rounded-full px-3 py-1.5">
               <iconify-icon icon="solar:camera-bold" class="text-accent-400 text-xs"></iconify-icon> Sony A7C II
             </span>
@@ -1077,7 +1078,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ TEAM ============ -->
-  <section id="team" class="relative py-20 md:py-24 lg:py-32">
+  <section id="team" class="relative py-16 md:py-24 lg:py-32">
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="reveal max-w-3xl mb-14 md:mb-16 lg:mb-20">
         <p class="text-accent-400 text-sm font-semibold uppercase tracking-widest mb-4">Team</p>
@@ -1204,7 +1205,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ TESTIMONIALS ============ -->
-  <section id="reviews" class="py-20 md:py-24 lg:py-32">
+  <section id="reviews" class="section-band py-16 md:py-24 lg:py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="reveal max-w-3xl mb-14 md:mb-16 lg:mb-20">
         <p class="text-accent-400 text-sm font-semibold uppercase tracking-widest mb-4">Reviews</p>
@@ -1621,7 +1622,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         나에게 맞는 패키지 찾기
         <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
       </a>
-      <p class="reveal text-xs text-zinc-600 mt-3" style="transition-delay: 280ms;">30초면 끝나요!</p>
+      <p class="reveal text-xs text-zinc-500 mt-3" style="transition-delay: 280ms;">30초면 끝나요!</p>
       <div class="reveal mt-6 inline-flex items-center gap-2 text-zinc-500 text-sm" style="transition-delay: 340ms;">
         <iconify-icon icon="solar:arrow-down-linear" class="animate-bounce text-base"></iconify-icon>
       </div>
@@ -1629,7 +1630,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ JOURNEY ============ -->
-  <section id="process" class="relative py-20 md:py-24 lg:py-32 border-t border-white/5">
+  <section id="process" class="relative py-16 md:py-24 lg:py-32">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="reveal text-center max-w-2xl mx-auto mb-14 md:mb-16 lg:mb-20">
         <p class="text-accent-400 text-sm font-semibold uppercase tracking-widest mb-4">Process</p>
@@ -1714,7 +1715,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ PRICING ============ -->
-  <section id="pricing" class="relative py-20 md:py-24 lg:py-32">
+  <section id="pricing" class="section-band relative py-16 md:py-24 lg:py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="reveal text-center max-w-2xl mx-auto mb-14 md:mb-16 lg:mb-20">
         <p class="text-accent-400 text-sm font-semibold uppercase tracking-widest mb-4">Packages</p>
@@ -1733,43 +1734,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="text-zinc-500 text-xs uppercase tracking-widest">주말 가능 · 1시간 30분</p>
           <div class="flex items-center gap-2 mt-1">
             <h3 class="font-display text-2xl font-bold text-white">ONE 패키지</h3>
-            <span class="text-[11px] text-zinc-400 font-semibold bg-white/5 border border-white/10 rounded-full px-2.5 py-0.5">1벌 · 스팟7</span>
+            <span class="text-xs text-zinc-400 font-semibold bg-white/5 border border-white/10 rounded-full px-2.5 py-0.5">1벌 · 스팟7</span>
           </div>
           <div class="flex items-center gap-2 mt-6">
             <p class="text-zinc-500 text-base line-through">120,000원</p>
             <span
-              class="text-[10px] font-bold text-red-400 bg-red-500/10 border border-red-500/20 rounded-full px-2 py-0.5">-29%</span>
+              class="text-xs font-bold text-red-400 bg-red-500/10 border border-red-500/20 rounded-full px-2 py-0.5">-29%</span>
           </div>
           <p class="font-display text-4xl sm:text-5xl font-bold text-white tracking-tighter mt-1">85,000<span
               class="text-lg text-zinc-500 font-normal">원</span></p>
           <div class="slot-info mt-5" data-package="one">
-            <div class="flex items-center justify-between text-[11px] mb-2">
+            <div class="flex items-center justify-between text-xs mb-2">
               <span class="text-zinc-500 uppercase tracking-widest">이번 달 잔여</span>
               <span class="text-white font-semibold"><span class="slot-remaining text-accent-400">6</span><span
-                  class="text-zinc-600">/<span class="slot-total">14</span>석</span></span>
+                  class="text-zinc-500">/<span class="slot-total">14</span>석</span></span>
             </div>
             <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
               <div class="slot-bar h-full bg-accent-500 rounded-full transition-all duration-700" style="width: 42%;">
               </div>
             </div>
-            <p class="slot-urgent hidden mt-2 text-[11px] text-red-400 font-semibold items-center gap-1">
+            <p class="slot-urgent hidden mt-2 text-xs text-red-400 font-semibold items-center gap-1">
               <iconify-icon icon="solar:fire-bold"></iconify-icon> 마감 임박
             </p>
           </div>
           <ul class="mt-7 space-y-2.5 text-sm text-zinc-300 flex-1">
-            <li class="text-[10px] text-zinc-500 uppercase tracking-widest font-semibold">촬영 전</li>
+            <li class="text-xs text-zinc-500 uppercase tracking-widest font-semibold">촬영 전</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 1:1 사전 컨설팅 (카톡)</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 의상 가이드 + 12종 코디북</li>
-            <li class="text-[10px] text-zinc-500 uppercase tracking-widest font-semibold pt-2">촬영 당일</li>
+            <li class="text-xs text-zinc-500 uppercase tracking-widest font-semibold pt-2">촬영 당일</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 1시간 30분 촬영 · 1벌 · 스팟7</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 실시간 포즈·표정 디렉팅</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 원본 300장+ 전량 제공</li>
-            <li class="text-[10px] text-zinc-500 uppercase tracking-widest font-semibold pt-2">촬영 후</li>
+            <li class="text-xs text-zinc-500 uppercase tracking-widest font-semibold pt-2">촬영 후</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 프리미엄 보정 5장+@ (당일 완료)</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
@@ -1789,24 +1790,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           class="hybrid-featured reveal relative rounded-3xl p-6 sm:p-8 flex flex-col bg-gradient-to-b from-accent-500/20 to-zinc-900/40 border-2 border-accent-400 lg:scale-[1.03] lg:-my-2"
           style="transition-delay: 100ms;">
           <div
-            class="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-gradient-to-r from-accent-500 to-accent-400 text-white text-[11px] font-black uppercase tracking-wider px-4 py-1.5 rounded-full shadow-[0_8px_24px_-6px_rgba(45,118,246,0.8)] whitespace-nowrap">
+            class="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-gradient-to-r from-accent-500 to-accent-400 text-white text-xs font-black uppercase tracking-wider px-4 py-1.5 rounded-full shadow-[0_8px_24px_-6px_rgba(45,118,246,0.8)] whitespace-nowrap">
             <iconify-icon icon="solar:crown-bold" class="text-sm"></iconify-icon>
             BEST · 78%가 선택
           </div>
           <p class="text-accent-400 text-xs uppercase tracking-widest">주말 가능 · 2시간</p>
           <div class="flex items-center gap-2 mt-1">
             <h3 class="font-display text-2xl font-bold text-white">HYBRID 패키지</h3>
-            <span class="text-[11px] text-accent-400 font-semibold bg-accent-500/10 border border-accent-500/20 rounded-full px-2.5 py-0.5">2벌 · 스팟14</span>
+            <span class="text-xs text-accent-400 font-semibold bg-accent-500/10 border border-accent-500/20 rounded-full px-2.5 py-0.5">2벌 · 스팟14</span>
           </div>
           <div class="flex items-center gap-2 mt-6">
             <p class="text-zinc-400 text-base line-through">210,000원</p>
             <span
-              class="text-[10px] font-bold text-red-400 bg-red-500/15 border border-red-500/30 rounded-full px-2 py-0.5">-24%</span>
+              class="text-xs font-bold text-red-400 bg-red-500/15 border border-red-500/30 rounded-full px-2 py-0.5">-24%</span>
           </div>
           <p class="font-display text-4xl sm:text-5xl font-bold text-white tracking-tighter mt-1">160,000<span
               class="text-lg text-zinc-500 font-normal">원</span></p>
           <div class="slot-info mt-5" data-package="hybrid">
-            <div class="flex items-center justify-between text-[11px] mb-2">
+            <div class="flex items-center justify-between text-xs mb-2">
               <span class="text-zinc-400 uppercase tracking-widest">이번 달 잔여</span>
               <span class="text-white font-semibold"><span class="slot-remaining text-accent-400">3</span><span
                   class="text-zinc-500">/<span class="slot-total">10</span>석</span></span>
@@ -1815,26 +1816,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="slot-bar h-full bg-accent-500 rounded-full transition-all duration-700" style="width: 30%;">
               </div>
             </div>
-            <p class="slot-urgent hidden mt-2 text-[11px] text-red-400 font-semibold items-center gap-1">
+            <p class="slot-urgent hidden mt-2 text-xs text-red-400 font-semibold items-center gap-1">
               <iconify-icon icon="solar:fire-bold"></iconify-icon> 마감 임박
             </p>
           </div>
           <ul class="mt-7 space-y-2.5 text-sm text-zinc-200 flex-1">
-            <li class="text-[10px] text-zinc-400 uppercase tracking-widest font-semibold">촬영 전</li>
+            <li class="text-xs text-zinc-400 uppercase tracking-widest font-semibold">촬영 전</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 1:1 사전 컨설팅 (카톡)</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 의상 가이드 + 12종 코디북</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 그루밍 노션 (피부·헤어 관리법)</li>
-            <li class="text-[10px] text-zinc-400 uppercase tracking-widest font-semibold pt-2">촬영 당일</li>
+            <li class="text-xs text-zinc-400 uppercase tracking-widest font-semibold pt-2">촬영 당일</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 2시간 촬영 · 2벌 · 스팟14</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 실시간 포즈·표정 디렉팅</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 원본 500장+ 전량 제공</li>
-            <li class="text-[10px] text-zinc-400 uppercase tracking-widest font-semibold pt-2">촬영 후</li>
+            <li class="text-xs text-zinc-400 uppercase tracking-widest font-semibold pt-2">촬영 후</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 프리미엄 보정 7장+@ (당일 완료)</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
@@ -1856,38 +1857,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="text-zinc-500 text-xs uppercase tracking-widest">주말 가능 · 5시간 이상</p>
           <div class="flex items-center gap-2 mt-1">
             <h3 class="font-display text-2xl font-bold text-white">ALL DAY 패키지</h3>
-            <span class="text-[11px] text-zinc-400 font-semibold bg-white/5 border border-white/10 rounded-full px-2.5 py-0.5">4벌 · N장소</span>
+            <span class="text-xs text-zinc-400 font-semibold bg-white/5 border border-white/10 rounded-full px-2.5 py-0.5">4벌 · N장소</span>
           </div>
           <div class="flex items-center gap-2 mt-6">
             <p class="text-zinc-500 text-base line-through">890,000원</p>
             <span
-              class="text-[10px] font-bold text-red-400 bg-red-500/10 border border-red-500/20 rounded-full px-2 py-0.5">-44%</span>
+              class="text-xs font-bold text-red-400 bg-red-500/10 border border-red-500/20 rounded-full px-2 py-0.5">-44%</span>
           </div>
           <p class="font-display text-4xl sm:text-5xl font-bold text-white tracking-tighter mt-1">500,000<span
               class="text-lg text-zinc-500 font-normal">원</span></p>
           <div class="slot-info mt-5" data-package="allday">
-            <div class="flex items-center justify-between text-[11px] mb-2">
+            <div class="flex items-center justify-between text-xs mb-2">
               <span class="text-zinc-500 uppercase tracking-widest">이번 달 잔여</span>
               <span class="text-white font-semibold"><span class="slot-remaining text-accent-400">2</span><span
-                  class="text-zinc-600">/<span class="slot-total">6</span>석</span></span>
+                  class="text-zinc-500">/<span class="slot-total">6</span>석</span></span>
             </div>
             <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
               <div class="slot-bar h-full bg-accent-500 rounded-full transition-all duration-700" style="width: 33%;">
               </div>
             </div>
-            <p class="slot-urgent hidden mt-2 text-[11px] text-red-400 font-semibold items-center gap-1">
+            <p class="slot-urgent hidden mt-2 text-xs text-red-400 font-semibold items-center gap-1">
               <iconify-icon icon="solar:fire-bold"></iconify-icon> 마감 임박
             </p>
           </div>
           <ul class="mt-7 space-y-2.5 text-sm text-zinc-300 flex-1">
-            <li class="text-[10px] text-zinc-500 uppercase tracking-widest font-semibold">촬영 전</li>
+            <li class="text-xs text-zinc-500 uppercase tracking-widest font-semibold">촬영 전</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 1:1 사전 컨설팅 (카톡)</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 외모 피드백 + 의상 가이드 + 12종 코디북</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 그루밍 노션 (피부·헤어 관리법)</li>
-            <li class="text-[10px] text-zinc-500 uppercase tracking-widest font-semibold pt-2">촬영 당일</li>
+            <li class="text-xs text-zinc-500 uppercase tracking-widest font-semibold pt-2">촬영 당일</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 헤어 스타일링 + 데일리 메이크업</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
@@ -1896,7 +1897,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 실시간 포즈·표정 디렉팅</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 원본 700장+ 전량 제공</li>
-            <li class="text-[10px] text-zinc-500 uppercase tracking-widest font-semibold pt-2">촬영 후</li>
+            <li class="text-xs text-zinc-500 uppercase tracking-widest font-semibold pt-2">촬영 후</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
                 class="text-accent-400 mt-0.5 flex-shrink-0"></iconify-icon> 프리미엄 보정 12장+@ (당일 완료)</li>
             <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold"
@@ -1922,7 +1923,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <iconify-icon icon="solar:shield-check-bold"></iconify-icon>
               </div>
               <div class="text-left">
-                <p class="text-[10px] text-accent-400 font-bold uppercase tracking-widest">MANSPICK Guarantee</p>
+                <p class="text-xs text-accent-400 font-bold uppercase tracking-widest">MANSPICK Guarantee</p>
                 <p class="text-white font-bold text-sm md:text-base">100% 만족 보장</p>
               </div>
             </div>
@@ -1958,7 +1959,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ FAQ ============ -->
-  <section id="faq" class="py-20 md:py-24 lg:py-32">
+  <section id="faq" class="py-16 md:py-24 lg:py-32">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="reveal text-center mb-12 md:mb-14 lg:mb-16">
         <p class="text-accent-400 text-sm font-semibold uppercase tracking-widest mb-4">FAQ</p>
@@ -2128,7 +2129,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="whitespace-nowrap">카카오톡으로 1:1 상담하기</span>
           <iconify-icon icon="solar:arrow-right-linear" class="arrow text-base md:text-2xl shrink-0"></iconify-icon>
         </a>
-        <p class="text-[11px] sm:text-xs md:text-sm text-zinc-500 flex items-center gap-2 break-keep">
+        <p class="text-xs md:text-sm text-zinc-500 flex items-center gap-2 break-keep">
           <span class="relative flex w-2 h-2 shrink-0">
             <span class="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-70"></span>
             <span class="relative w-2 h-2 rounded-full bg-green-400"></span>
@@ -2143,7 +2144,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div
-        class="reveal grid grid-cols-3 sm:flex sm:flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-3 mt-10 text-[11px] sm:text-xs text-zinc-500"
+        class="reveal grid grid-cols-3 sm:flex sm:flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-3 mt-10 text-xs text-zinc-500"
         style="transition-delay: 360ms;">
         <span class="flex flex-col sm:flex-row items-center gap-1 sm:gap-1.5 text-center"><iconify-icon
             icon="solar:shield-check-bold" class="text-accent-400 text-base sm:text-sm shrink-0"></iconify-icon><span
@@ -2177,7 +2178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="absolute inset-0 bg-black/55"></div>
               <div class="absolute top-0 left-0 w-1.5 h-full bg-accent-500"></div>
               <div class="absolute inset-0 p-3 sm:p-4 flex flex-col justify-end">
-                <p class="text-accent-400 text-[8px] font-bold uppercase tracking-[0.2em] mb-1">MANSPICK EXCLUSIVE</p>
+                <p class="text-accent-400 text-xs font-bold uppercase tracking-[0.2em] mb-1">MANSPICK EXCLUSIVE</p>
                 <p class="font-display text-base sm:text-lg font-black text-white leading-[0.95]">MEN'S<br>GROOMING<br>GUIDE</p>
               </div>
             </div>
@@ -2187,7 +2188,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
           <div class="min-w-0 pt-1">
-            <div class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-bold bg-red-500/10 border border-red-500/20 text-red-400 mb-3">
+            <div class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold bg-red-500/10 border border-red-500/20 text-red-400 mb-3">
               <iconify-icon icon="solar:fire-bold"></iconify-icon>
               잔여 <span id="lead-remaining" class="text-white mx-0.5">23</span>/100
             </div>
@@ -2205,7 +2206,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <iconify-icon icon="solar:book-bold"></iconify-icon>
             </div>
             <div>
-              <p class="text-[10px] text-zinc-500 uppercase tracking-widest">SPECIAL GIFT</p>
+              <p class="text-xs text-zinc-500 uppercase tracking-widest">SPECIAL GIFT</p>
               <p class="text-white font-bold text-sm">그루밍 가이드북</p>
             </div>
           </div>
@@ -2214,7 +2215,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <iconify-icon icon="solar:user-id-bold"></iconify-icon>
             </div>
             <div>
-              <p class="text-[10px] text-zinc-500 uppercase tracking-widest">CONSULTING</p>
+              <p class="text-xs text-zinc-500 uppercase tracking-widest">CONSULTING</p>
               <p class="text-white font-bold text-sm">전문가 1:1 맞춤 진단</p>
             </div>
           </div>
@@ -2234,7 +2235,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
             <div id="lead-bar" class="h-full bg-gradient-to-r from-red-500 to-red-400 rounded-full transition-all duration-700" style="width: 23%;"></div>
           </div>
-          <p id="lead-recent" class="mt-2 text-[11px] text-zinc-500 flex items-center gap-1.5 transition-opacity duration-500">
+          <p id="lead-recent" class="mt-2 text-xs text-zinc-500 flex items-center gap-1.5 transition-opacity duration-500">
             <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse shrink-0"></span>
             <span>3분 전 김○○님이 신청했어요</span>
           </p>
@@ -2246,12 +2247,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <label class="block">
               <span class="block text-sm font-medium text-zinc-400 mb-2">성함</span>
               <input type="text" id="lead-name" name="entry.779413363" placeholder="홍길동"
-                class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-zinc-600 focus:outline-none focus:border-accent-400 transition">
+                class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-zinc-500 focus:outline-none focus:border-accent-400 transition">
             </label>
             <label class="block">
               <span class="block text-sm font-medium text-zinc-400 mb-2">연락처</span>
               <input type="tel" id="lead-phone" name="entry.2136682804" placeholder="010-0000-0000" inputmode="numeric" maxlength="13"
-                class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-zinc-600 focus:outline-none focus:border-accent-400 transition">
+                class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-zinc-500 focus:outline-none focus:border-accent-400 transition">
             </label>
           </div>
 
@@ -2260,7 +2261,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="block text-sm font-medium text-zinc-400 mb-2">관심 패키지</span>
               <select id="lead-package" name="entry.212751070"
                 class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-accent-400 transition appearance-none">
-                <option value="" class="text-zinc-600">선택해주세요</option>
+                <option value="" class="text-zinc-500">선택해주세요</option>
                 <option value="ONE">ONE</option>
                 <option value="HYBRID">HYBRID</option>
                 <option value="ALL DAY">ALL DAY</option>
@@ -2271,7 +2272,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="block text-sm font-medium text-zinc-400 mb-2">촬영 목적</span>
               <select id="lead-purpose" name="entry.852384418"
                 class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-accent-400 transition appearance-none">
-                <option value="" class="text-zinc-600">선택해주세요</option>
+                <option value="" class="text-zinc-500">선택해주세요</option>
                 <option value="소개팅/결혼정보회사">소개팅/결혼정보회사</option>
                 <option value="SNS/인스타그램">SNS/인스타그램</option>
                 <option value="비즈니스/링크드인">비즈니스/링크드인</option>
@@ -2282,7 +2283,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="block text-sm font-medium text-zinc-400 mb-2">희망 시기</span>
               <select id="lead-timing" name="entry.1671617897"
                 class="w-full bg-zinc-900/80 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-accent-400 transition appearance-none">
-                <option value="" class="text-zinc-600">선택해주세요</option>
+                <option value="" class="text-zinc-500">선택해주세요</option>
                 <option value="이번주">이번주</option>
                 <option value="2주 내">2주 내</option>
                 <option value="1개월 내">1개월 내</option>
@@ -2333,7 +2334,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ============ LIVE VIEWERS BADGE (sticky) ============ -->
   <div id="live-viewers-badge"
-    class="fixed left-3 md:left-6 bottom-[5.5rem] md:bottom-28 z-40 glass-strong rounded-full pl-2.5 md:pl-3 pr-3 md:pr-4 py-1.5 md:py-2 flex items-center gap-1.5 md:gap-2 text-[11px] md:text-xs font-semibold shadow-2xl opacity-0 translate-y-2 transition-all duration-500 pointer-events-none">
+    class="fixed left-3 md:left-6 bottom-[5.5rem] md:bottom-28 z-40 glass-strong rounded-full pl-2.5 md:pl-3 pr-3 md:pr-4 py-1.5 md:py-2 flex items-center gap-1.5 md:gap-2 text-xs font-semibold shadow-2xl opacity-0 translate-y-2 transition-all duration-500 pointer-events-none">
     <span class="relative flex w-2 h-2">
       <span class="absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75 animate-ping"></span>
       <span class="relative inline-flex w-2 h-2 rounded-full bg-red-500"></span>
@@ -2385,7 +2386,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="relative flex items-center gap-2 md:gap-3 min-w-0 flex-1">
         <span
-          class="hidden sm:inline-flex items-center gap-1 text-[10px] md:text-[11px] font-bold text-red-400 bg-red-500/10 border border-red-500/20 rounded-full px-2 md:px-2.5 py-1 shrink-0 uppercase tracking-wider">
+          class="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-red-400 bg-red-500/10 border border-red-500/20 rounded-full px-2 md:px-2.5 py-1 shrink-0 uppercase tracking-wider">
           <iconify-icon icon="solar:fire-bold" class="text-xs"></iconify-icon>
           이달 마감 임박
         </span>
@@ -2439,7 +2440,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <div>
-          <p class="text-xs uppercase tracking-widest text-zinc-600 mb-4">서비스</p>
+          <p class="text-xs uppercase tracking-widest text-zinc-500 mb-4">서비스</p>
           <ul class="space-y-2 text-sm text-zinc-400">
             <li><a href="#before-after" class="hover:text-white transition">변신 사례</a></li>
             <li><a href="#how" class="hover:text-white transition">5가지 노하우</a></li>
@@ -2452,7 +2453,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </ul>
         </div>
         <div>
-          <p class="text-xs uppercase tracking-widest text-zinc-600 mb-4">연락</p>
+          <p class="text-xs uppercase tracking-widest text-zinc-500 mb-4">연락</p>
           <ul class="space-y-2 text-sm text-zinc-400">
             <li>서울특별시 강서구 양천로 94, G85호</li>
             <li>매일 11:00 — 21:00</li>
@@ -2485,8 +2486,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="flex gap-8">
           <div class="flex-1 min-w-0">
-            <p class="text-[10px] uppercase tracking-widest text-zinc-600 mb-2.5">서비스</p>
-            <ul class="grid grid-cols-2 gap-x-2 gap-y-1 text-[11px] text-zinc-500">
+            <p class="text-xs uppercase tracking-widest text-zinc-500 mb-2.5">서비스</p>
+            <ul class="grid grid-cols-2 gap-x-2 gap-y-1 text-xs text-zinc-500">
               <li><a href="#before-after" class="hover:text-white transition">변신 사례</a></li>
               <li><a href="#team" class="hover:text-white transition">팀 소개</a></li>
               <li><a href="#how" class="hover:text-white transition">5가지 노하우</a></li>
@@ -2498,8 +2499,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
           </div>
           <div class="flex-shrink-0">
-            <p class="text-[10px] uppercase tracking-widest text-zinc-600 mb-2.5">연락</p>
-            <ul class="space-y-1 text-[11px] text-zinc-500">
+            <p class="text-xs uppercase tracking-widest text-zinc-500 mb-2.5">연락</p>
+            <ul class="space-y-1 text-xs text-zinc-500">
               <li>강서구 양천로 94, G85호</li>
               <li>매일 11:00 — 21:00</li>
               <li><a href="mailto:wook971215@gmail.com" class="hover:text-white transition">wook971215@gmail.com</a></li>
@@ -2507,7 +2508,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
       </div>
-      <div class="mt-12 pt-6 border-t border-white/5 text-[11px] text-zinc-600 leading-relaxed space-y-1">
+      <div class="mt-12 pt-6 border-t border-white/5 text-xs text-zinc-500 leading-relaxed space-y-1">
         <p class="flex flex-wrap gap-x-1">
           <span><span class="text-zinc-500">상호</span> 맨즈픽(MANSPICK)</span>
           <span class="hidden sm:inline text-zinc-700">|</span>
@@ -2525,14 +2526,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </p>
       </div>
       <div
-        class="mt-6 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
+        class="mt-6 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-zinc-500">
         <p>© 2026 MANSPICK. All rights reserved.</p>
         <div class="flex items-center gap-5">
           <a href="terms.html" class="hover:text-white transition">이용약관</a>
           <a href="privacy.html" class="hover:text-white transition">개인정보처리방침</a>
         </div>
       </div>
-      <p class="mt-4 text-[10px] text-zinc-700 leading-relaxed text-center break-keep">
+      <p class="mt-4 text-xs text-zinc-500 leading-relaxed text-center break-keep">
         본 웹사이트의 모든 콘텐츠(텍스트, 이미지, 디자인, 코드, 구조 등)는 맨즈픽(MANSPICK)의 자산으로 저작권법에 의해 보호됩니다.
         AI 크롤링·스크래핑 등을 포함한 무단 복제·모방·재배포 시 사전 경고 없이 민·형사상 법적 조치를 취합니다.
       </p>

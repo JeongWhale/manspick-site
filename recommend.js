@@ -51,14 +51,21 @@
   };
 
   // Quiz answer → addon mapping
+  // 수량형 애드온(clothes-rental 등)은 여기 넣으면 토글로 잘못 합산되므로 quizQtyMap 사용
   const quizAddonMap = {
     hair:     ['hair'],
-    clothes:  ['clothes-rental', 'clothes-brand'],
     dslr:     ['dslr'],
     ai:       ['ai'],
     shopping: ['shopping'],
     lecture:  ['lecture'],
   };
+
+  // Quiz answer → qty-based addons that start at the package's outfit count
+  const quizQtyMap = {
+    clothes: ['clothes-rental'],
+  };
+  // Qty addons still following the package outfit count (cleared once the user adjusts them)
+  const autoQtyAddons = new Set();
 
   // ── State ──
   let currentStep = 1;
@@ -94,8 +101,18 @@
         });
       }
     });
+    // 1단계에서는 라벨, 2단계부터는 "이전" 버튼
+    quizLabel?.classList.toggle('hidden', n > 1);
+    quizBack?.classList.toggle('hidden', n <= 1);
+    quizBack?.classList.toggle('inline-flex', n > 1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  const quizLabel = document.getElementById('quiz-label');
+  const quizBack = document.getElementById('quiz-back');
+  quizBack?.addEventListener('click', () => {
+    if (currentStep > 1) showStep(currentStep - 1);
+  });
 
   // ── Option click (single select steps 3-4) ──
   document.querySelectorAll('.quiz-option:not(.multi)').forEach(btn => {
@@ -109,8 +126,10 @@
       siblings.forEach(s => s.classList.remove('selected'));
       btn.classList.add('selected');
 
-      // Auto-advance after brief delay
-      setTimeout(() => showStep(currentStep + 1), 300);
+      // Auto-advance after brief delay — 이 단계에 아직 머물러 있을 때만
+      // (빠른 연속 클릭으로 단계를 건너뛰거나, 그사이 "이전"을 누른 경우 방지)
+      const stepNum = +btn.closest('.quiz-step').dataset.step;
+      setTimeout(() => { if (currentStep === stepNum) showStep(stepNum + 1); }, 300);
     });
   });
 
@@ -212,12 +231,17 @@
 
     // Recommended addons from step 5
     selectedAddons.clear();
+    for (const key of Object.keys(addonQty)) addonQty[key] = 0;
+    autoQtyAddons.clear();
     if (answers.addons) {
       answers.addons.forEach(a => {
         const mapped = quizAddonMap[a];
         if (mapped) mapped.forEach(id => selectedAddons.add(id));
+        const qtyMapped = quizQtyMap[a];
+        if (qtyMapped) qtyMapped.forEach(id => autoQtyAddons.add(id));
       });
     }
+    syncAutoQty();
 
     showResult();
   }
@@ -273,7 +297,9 @@
       selectedPkg = btn.dataset.pkg;
       resultPkgName.textContent = packages[selectedPkg].name;
       updatePkgSelector();
+      syncAutoQty();
       updateQtyMaxLabels();
+      document.querySelectorAll('.addon-qty-wrap').forEach(wrap => updateQtyDisplay(wrap));
       updateTotal();
     });
   });
@@ -340,12 +366,17 @@
       if (qty > 0 && addonLabels[id]) items.push(addonLabels[id] + ' ×' + qty);
     }
     summaryList.innerHTML = items.map(t =>
-      `<span class="text-[10px] text-zinc-400 bg-white/5 rounded-full px-2 py-0.5">${t}</span>`
+      `<span class="text-xs text-zinc-400 bg-white/5 rounded-full px-2 py-0.5">${t}</span>`
     ).join('');
   }
 
   // ── Qty-based addon controls ──
   function getMaxOutfits() { return packageOutfits[selectedPkg] || 2; }
+
+  // Auto-following qty addons = package outfit count (ONE 1, HYBRID 2, ALL DAY 4)
+  function syncAutoQty() {
+    autoQtyAddons.forEach(id => { addonQty[id] = getMaxOutfits(); });
+  }
 
   function updateQtyMaxLabels() {
     const max = getMaxOutfits();
@@ -383,9 +414,11 @@
   document.querySelectorAll('.addon-qty-wrap').forEach(wrap => {
     const id = wrap.dataset.addon;
     wrap.querySelector('.qty-minus').addEventListener('click', () => {
+      autoQtyAddons.delete(id);
       if (addonQty[id] > 0) { addonQty[id]--; updateQtyDisplay(wrap); updateTotal(); }
     });
     wrap.querySelector('.qty-plus').addEventListener('click', () => {
+      autoQtyAddons.delete(id);
       if (addonQty[id] < getMaxOutfits()) { addonQty[id]++; updateQtyDisplay(wrap); updateTotal(); }
     });
   });
@@ -436,6 +469,7 @@
     priceBar.classList.add('translate-y-full');
     priceBar.classList.remove('translate-y-0');
     selectedAddons.clear();
+    autoQtyAddons.clear();
     for (const key of Object.keys(addonQty)) addonQty[key] = 0;
     document.querySelectorAll('.addon-qty-wrap').forEach(wrap => updateQtyDisplay(wrap));
 

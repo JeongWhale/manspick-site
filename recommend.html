@@ -27,6 +27,7 @@
       theme: {
         extend: {
           colors: {
+            zinc: { 500: '#85858e' },  // 기본 #71717a는 검은 배경 대비 3.9:1이라 4.5:1 이상으로 밝힘
             accent: { 400: '#2D76F6', 500: '#2D76F6', 600: '#1e5fd6' }
           }
         }
@@ -58,8 +59,12 @@
     <div id="quiz-container">
       <!-- Progress -->
       <div class="mb-10">
-        <div class="flex items-center justify-between text-xs text-zinc-500 mb-2">
-          <span>맞춤 추천</span>
+        <div class="flex items-center justify-between text-xs text-zinc-500 mb-2 min-h-[28px]">
+          <span id="quiz-label">맞춤 추천</span>
+          <button type="button" id="quiz-back" class="hidden -ml-2 px-2 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition items-center gap-1" aria-label="이전 단계로">
+            <iconify-icon icon="solar:arrow-left-linear" class="text-sm"></iconify-icon>
+            이전
+          </button>
           <span><span id="step-current">1</span> / 5</span>
         </div>
         <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -93,9 +98,9 @@
               <div class="text-left"><p class="font-semibold text-white">특별한 날 기념</p><p class="text-xs text-zinc-500 mt-0.5">생일, 졸업, 기념일 등</p></div>
             </button>
           </div>
-          <button class="step-next mt-6 w-full py-3.5 rounded-2xl bg-white/5 border border-white/10 text-zinc-400 font-semibold text-sm transition-all duration-200 opacity-30 pointer-events-none" disabled>
+          <button class="step-next mt-6 w-full py-3.5 rounded-2xl bg-white/5 border border-white/10 text-zinc-400 font-semibold text-sm transition-all duration-200 opacity-30 pointer-events-none inline-flex items-center justify-center gap-1" disabled>
             다음으로
-            <iconify-icon icon="solar:arrow-right-linear" class="text-base ml-1"></iconify-icon>
+            <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
           </button>
         </div>
 
@@ -122,9 +127,9 @@
               <div class="text-left"><p class="font-semibold text-white">전체적으로 이미지를 확 바꾸고 싶다</p><p class="text-xs text-zinc-500 mt-0.5">완전히 다른 사람처럼 변신</p></div>
             </button>
           </div>
-          <button class="step-next mt-6 w-full py-3.5 rounded-2xl bg-white/5 border border-white/10 text-zinc-400 font-semibold text-sm transition-all duration-200 opacity-30 pointer-events-none" disabled>
+          <button class="step-next mt-6 w-full py-3.5 rounded-2xl bg-white/5 border border-white/10 text-zinc-400 font-semibold text-sm transition-all duration-200 opacity-30 pointer-events-none inline-flex items-center justify-center gap-1" disabled>
             다음으로
-            <iconify-icon icon="solar:arrow-right-linear" class="text-base ml-1"></iconify-icon>
+            <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
           </button>
         </div>
 
@@ -258,9 +263,9 @@
               <div class="flex items-start gap-3 min-w-0">
                 <iconify-icon icon="solar:hanger-bold" class="text-lg text-zinc-500 shrink-0 mt-0.5"></iconify-icon>
                 <div class="min-w-0">
-                  <p class="font-semibold text-white text-sm inline-flex items-center gap-1 cursor-pointer">인플루언서 의류 대여 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-600 text-xs transition-transform duration-200"></iconify-icon></p>
+                  <p class="font-semibold text-white text-sm inline-flex items-center gap-1 cursor-pointer">인플루언서 의류 대여 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-500 text-xs transition-transform duration-200"></iconify-icon></p>
                   <p class="addon-desc text-xs text-zinc-500 mt-1 leading-relaxed hidden">사이즈 체크 후, 46K 인플루언서가 소장하고 있는 의류를 대여해 드립니다. 촬영에 딱 맞는 스타일링이 가능합니다.</p>
-                  <p class="text-[10px] text-zinc-600 mt-1">패키지 벌수까지 선택 가능 · <span class="addon-max-label">최대 2벌</span></p>
+                  <p class="text-xs text-zinc-500 mt-1">패키지 벌수까지 선택 가능 · <span class="addon-max-label">최대 2벌</span></p>
                 </div>
               </div>
               <div class="flex items-center gap-2 shrink-0 mt-0.5">
@@ -279,9 +284,9 @@
               <div class="flex items-start gap-3 min-w-0">
                 <iconify-icon icon="solar:t-shirt-bold" class="text-lg text-zinc-500 shrink-0 mt-0.5"></iconify-icon>
                 <div class="min-w-0">
-                  <p class="font-semibold text-white text-sm inline-flex items-center gap-1 cursor-pointer">브랜드 의류 1코디 제작 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-600 text-xs transition-transform duration-200"></iconify-icon></p>
+                  <p class="font-semibold text-white text-sm inline-flex items-center gap-1 cursor-pointer">브랜드 의류 1코디 제작 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-500 text-xs transition-transform duration-200"></iconify-icon></p>
                   <p class="addon-desc text-xs text-zinc-500 mt-1 leading-relaxed hidden">브랜드에서 판매하는 제품으로 촬영 당일에 입을 코디를 제작해 드립니다. 구매 후 본인 소장 가능합니다.</p>
-                  <p class="text-[10px] text-zinc-600 mt-1">패키지 벌수까지 선택 가능 · <span class="addon-max-label">최대 2벌</span></p>
+                  <p class="text-xs text-zinc-500 mt-1">패키지 벌수까지 선택 가능 · <span class="addon-max-label">최대 2벌</span></p>
                 </div>
               </div>
               <div class="flex items-center gap-2 shrink-0 mt-0.5">
@@ -299,7 +304,7 @@
             <div class="flex items-start gap-3 min-w-0">
               <iconify-icon icon="solar:smartphone-bold" class="text-lg text-zinc-500 shrink-0 mt-0.5"></iconify-icon>
               <div class="min-w-0">
-                <p class="font-semibold text-white text-sm inline-flex items-center gap-1">스마트폰으로 인물사진 찍는 법 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-600 text-xs transition-transform duration-200"></iconify-icon></p>
+                <p class="font-semibold text-white text-sm inline-flex items-center gap-1">스마트폰으로 인물사진 찍는 법 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-500 text-xs transition-transform duration-200"></iconify-icon></p>
                 <p class="addon-desc text-xs text-zinc-500 mt-1 leading-relaxed hidden">전자책 교재를 활용한 실습 강의입니다. 일상에서 스마트폰으로 인물사진을 잘 찍는 노하우를 배울 수 있습니다.</p>
               </div>
             </div>
@@ -315,7 +320,7 @@
             <div class="flex items-start gap-3 min-w-0">
               <iconify-icon icon="solar:magic-stick-3-bold" class="text-lg text-zinc-500 shrink-0 mt-0.5"></iconify-icon>
               <div class="min-w-0">
-                <p class="font-semibold text-white text-sm inline-flex items-center gap-1">헤어 스타일링 & 데일리 메이크업 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-600 text-xs transition-transform duration-200"></iconify-icon></p>
+                <p class="font-semibold text-white text-sm inline-flex items-center gap-1">헤어 스타일링 & 데일리 메이크업 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-500 text-xs transition-transform duration-200"></iconify-icon></p>
                 <p class="addon-desc text-xs text-zinc-500 mt-1 leading-relaxed hidden">촬영 당일 전문 헤어팀이 현장 방문하여 헤어 세팅 + 데일리 메이크업을 진행합니다. 피부·헤어 관리 정보도 함께 제공됩니다.</p>
               </div>
             </div>
@@ -331,7 +336,7 @@
             <div class="flex items-start gap-3 min-w-0">
               <iconify-icon icon="solar:atom-bold" class="text-lg text-zinc-500 shrink-0 mt-0.5"></iconify-icon>
               <div class="min-w-0">
-                <p class="font-semibold text-white text-sm inline-flex items-center gap-1">AI 스튜디오 프로필 생성 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-600 text-xs transition-transform duration-200"></iconify-icon></p>
+                <p class="font-semibold text-white text-sm inline-flex items-center gap-1">AI 스튜디오 프로필 생성 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-500 text-xs transition-transform duration-200"></iconify-icon></p>
                 <p class="addon-desc text-xs text-zinc-500 mt-1 leading-relaxed hidden">촬영한 사진을 바탕으로 AI를 활용하여 스튜디오에서 찍은 듯한 컨셉 사진을 제공합니다. (2장 제공)</p>
               </div>
             </div>
@@ -347,7 +352,7 @@
             <div class="flex items-start gap-3 min-w-0">
               <iconify-icon icon="solar:bag-bold" class="text-lg text-zinc-500 shrink-0 mt-0.5"></iconify-icon>
               <div class="min-w-0">
-                <p class="font-semibold text-white text-sm inline-flex items-center gap-1">서울권 오프라인 동행쇼핑 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-600 text-xs transition-transform duration-200"></iconify-icon></p>
+                <p class="font-semibold text-white text-sm inline-flex items-center gap-1">서울권 오프라인 동행쇼핑 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-500 text-xs transition-transform duration-200"></iconify-icon></p>
                 <p class="addon-desc text-xs text-zinc-500 mt-1 leading-relaxed hidden">촬영 전, 최대 2시간 동안 함께 쇼핑하며 촬영에 입을 옷을 골라드립니다. 체형·분위기에 맞는 스타일링 코칭도 함께 진행됩니다.</p>
               </div>
             </div>
@@ -363,7 +368,7 @@
             <div class="flex items-start gap-3 min-w-0">
               <iconify-icon icon="solar:camera-bold" class="text-lg text-zinc-500 shrink-0 mt-0.5"></iconify-icon>
               <div class="min-w-0">
-                <p class="font-semibold text-white text-sm inline-flex items-center gap-1">DSLR 스냅 촬영 추가 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-600 text-xs transition-transform duration-200"></iconify-icon></p>
+                <p class="font-semibold text-white text-sm inline-flex items-center gap-1">DSLR 스냅 촬영 추가 <iconify-icon icon="solar:alt-arrow-down-linear" class="addon-arrow text-zinc-500 text-xs transition-transform duration-200"></iconify-icon></p>
                 <p class="addon-desc text-xs text-zinc-500 mt-1 leading-relaxed hidden">전문직/기업 프로필 추천. 소니 카메라를 활용한 스냅 촬영이 포함되며, 프리미엄 보정본 2장이 추가 제공됩니다.</p>
               </div>
             </div>
@@ -403,12 +408,12 @@
           <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
         </a>
       </div>
-      <p class="mt-2 text-[11px] text-zinc-500 inline-flex items-center gap-1">
+      <p class="mt-2 text-xs text-zinc-500 inline-flex items-center gap-1">
         <iconify-icon icon="solar:camera-bold" class="text-xs"></iconify-icon>
         화면 캡처 후 카카오톡으로 보내주세요, 선택하신 구성 그대로 안내해 드릴게요.
       </p>
       <div class="mt-1.5">
-        <button id="summary-toggle" class="inline-flex items-center gap-1 text-[11px] text-zinc-500 hover:text-zinc-300 transition">
+        <button id="summary-toggle" class="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 transition">
           <span>받는 구성 보기</span>
           <iconify-icon icon="solar:alt-arrow-down-linear" class="summary-arrow text-xs transition-transform duration-200"></iconify-icon>
         </button>
